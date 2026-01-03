@@ -1,0 +1,26 @@
+to link django rest api to react frontend
+- pip install django-cors-headers
+- in setting of your django project
+  - add 'corsheaders' to INSTALLED_APPS
+  - add 'corsheaders.middleware.CorsMiddleware' to MIDdLEWARE
+  - anywhere in settings add CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+to create navigation between react pages
+- npm install react-router-dom
+- In App.jsx, import { Routes, Route } from "react-router-dom"
+-  include this under return: <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/tasks" element={<Tasks />} />
+      <Route path="/calendar" element={<Calendar />} />
+      <Route path="/profile" element={<Profile />} />
+    </Routes>
+- to navigate between pages using links
+  - import { Link } from "react-router-dom";
+  - <nav>
+      <Link to="/">Home</Link>
+      <Link to="/tasks">Tasks</Link>
+      <Link to="/calendar">Calendar</Link>
+    </nav>

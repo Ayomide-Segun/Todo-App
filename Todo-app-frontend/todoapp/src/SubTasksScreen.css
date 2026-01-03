@@ -1,0 +1,65 @@
+.sub-task-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 80%;
+    border: 2px solid #071a9438;
+    box-shadow: 0 3px 5px #071a9458;
+    cursor: pointer;
+    margin: auto;
+}
+.title{
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0 auto;
+}
+.subtask_calender{
+    display: grid;
+    width: 50%;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+}
+.subtask_calender_box{
+    height: 80px;
+    font-size: 24px;
+}
+.expand-card{
+    width: 80%;
+}
+.check-in-button{
+    background-color: #2b43e2;
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+.check-in-button:hover{
+    background-color: #071a9458;
+    color: white;
+    border: none;
+    outline: none;
+}
+.check-in-button:active{
+    background-color: white;
+    color: #2b43e2;
+    border: none;
+    outline: none;
+}
+.check-in-button:focus{
+    border: none;
+    outline: none;
+}
+.calender-check{
+    position: inherit;
+    top: 4px;
+    right: 25px;
+}
+.ai-calender-check{
+    position: inherit;
+    top: 15px;
+    right: 30px;
+}

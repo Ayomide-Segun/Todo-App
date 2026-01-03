@@ -1,0 +1,112 @@
+import { useState, useContext, useEffect } from 'react'
+import { AuthContext } from '../contexts/AuthContext.jsx'
+import { SmallerComponentsContext } from '../contexts/SmallerComponentsContext.jsx'
+import '../Login.css'
+
+export function LoginScreen(props){
+    const {navigate} = props
+    const {Login, username, setUsername} = useContext(AuthContext)
+    const {setAddTodoShowing, setHeaderShowing} = useContext(SmallerComponentsContext)
+    const [loginDetails, setLoginDetails] = useState({
+        "username": '',
+        "password": ''
+    })
+
+    function handleSubmit(e){
+        e.preventDefault()
+        Login(loginDetails.username, loginDetails.password)
+        setUsername(loginDetails.username)
+    }
+
+    useEffect(()=>{
+        localStorage.setItem('username', JSON.stringify(username))
+    }, [username])
+
+    useEffect(()=>{
+        setAddTodoShowing(false)
+        setHeaderShowing(false)
+    },[])
+
+    return(
+        <main
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                height: "80%",
+                alignItems: "center"
+            }}
+        >
+            <form className='login-form' method='POST' onSubmit={handleSubmit}>
+                <div className='header'>
+                        <img className='app-logo' src="/logo.png" alt="logo of todo app" />
+                    
+                    <h2 className='authenticate'>Welcome back</h2>
+                </div>
+                
+
+                <p
+                style={{
+                        margin: "0"
+                    }}
+                >New here? <a     
+                    style={{
+                        margin: "0",
+                        cursor: "pointer"
+                    }}
+                    onClick={()=>{
+                        navigate("/register")   
+                        }}
+                >Click here to create an account</a></p>
+
+                <input 
+                    className='authentication-input'
+                    type="text" 
+                    id='user-name' 
+                    name='user-name' 
+                    placeholder='Username'
+                    value={loginDetails.username}
+                    onChange={(e)=>{
+                        const value = e.target.value
+                        setLoginDetails(prev => ({ ...prev, username: value }))
+                    }}
+                />
+
+                <input 
+                    className='authentication-input'
+                    type="password" 
+                    id='password' 
+                    name='password' 
+                    placeholder='Password'
+                    value={loginDetails.password}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        setLoginDetails(prev => ({ ...prev, password: value }));
+                    }}
+                />
+
+                <div
+                    style={{
+                        display: "flex-end",
+                        justifyContent: "end",
+                        width: "70%"
+                    }}
+                >
+                    <a 
+                        className='forgot-password' 
+                        href="SignUpScreen.jsx"
+                        onClick={(e)=> {
+                            e.preventDefault()
+                            navigate('/forgotPassword')}}
+                        
+                    >Forgot password</a>
+                </div>
+
+                <input 
+                    className='submit-button' 
+                    type="submit" 
+                    value="Sign in"
+                />
+            </form>
+        </main>
+    )
+}
