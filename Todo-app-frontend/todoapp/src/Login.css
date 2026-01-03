@@ -12,7 +12,7 @@
 .login-form, .register-form{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 85%;
     height: 90%;
     justify-content: space-around;
     align-items: center;
@@ -89,5 +89,8 @@ a{
 
 .forgot-password{
     font-size: 15px;
+}
+.recovery{
+    margin-bottom: 60px;
 }
 

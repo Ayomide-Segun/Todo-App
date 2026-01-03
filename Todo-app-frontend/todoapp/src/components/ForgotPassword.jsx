@@ -70,7 +70,7 @@ export function ForgotPassword(){
                         Reset
                     </button>
                 </div>:
-            <p>Recovery Email has been sent</p>
+            <p className='recovery'>Recovery Email has been sent</p>
             }
             </form>
         </main>
