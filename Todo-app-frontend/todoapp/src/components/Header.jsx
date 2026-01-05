@@ -1,6 +1,6 @@
 import { FaBars } from "react-icons/fa"
 import { FaBell } from "react-icons/fa"
-import {SideBar} from './SideBar'
+import {SideBar} from './SideBar.jsx'
 import { NotificationsPopUp } from "./NotificationsPopUp.jsx"
 import { useContext, useState, useEffect } from "react"
 import { AppContext } from "../contexts/AppContext.jsx"

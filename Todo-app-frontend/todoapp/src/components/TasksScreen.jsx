@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Tabs } from "./Tabs";
-import {TodoCard} from "./TodoCard"
+import { Tabs } from "./Tabs.jsx";
+import {TodoCard} from "./TodoCard.jsx"
 import '../TasksScreen.css'
-import { Calender } from "./Calender";
-import { Search } from "./Search";
+import { Calender } from "./Calender.jsx";
+import { Search } from "./Search.jsx";
 import api from "../api/axios.js";
-import { DeletePopUp } from "./DeletePopUp";
+import { DeletePopUp } from "./DeletePopUp.jsx";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext.jsx";
 import { SmallerComponentsContext } from "../contexts/SmallerComponentsContext.jsx";

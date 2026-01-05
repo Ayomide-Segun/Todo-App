@@ -1,12 +1,12 @@
 import { useEffect, useContext } from 'react'
 import './App.css'
 import './HomeScreen.css'
-import {Header} from './components/Header'
-import {HomeScreen} from './components/home-components/HomeScreen'
+import {Header} from './components/Header.jsx'
+import {HomeScreen} from './components/home-components/HomeScreen.jsx'
 import { AboutScreen } from "./components/AboutScreen.jsx";
-import { TasksScreen } from "./components/TasksScreen";
-import {AddTodo} from './components/AddTodo';
-import { TodoInput } from './components/TodoInput'
+import { TasksScreen } from "./components/TasksScreen.jsx";
+import {AddTodo} from './components/AddTodo.jsx';
+import { TodoInput } from './components/TodoInput.jsx'
 import api from './api/axios.js'
 import { Routes, Route } from "react-router-dom"
 import { useNavigate } from "react-router-dom"

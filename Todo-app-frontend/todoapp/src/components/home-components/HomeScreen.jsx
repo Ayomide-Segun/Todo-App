@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import { TaskProgressCard } from './TaskProgressCard';
-import { TaskGroupCards } from './TaskGroupCards';
+import { TaskProgressCard } from './TaskProgressCard.jsx';
+import { TaskGroupCards } from './TaskGroupCards.jsx';
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { AppContext } from '../../contexts/AppContext.jsx';
