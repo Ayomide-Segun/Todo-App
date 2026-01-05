@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: todo-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn todoproject.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: todoproject.settings
