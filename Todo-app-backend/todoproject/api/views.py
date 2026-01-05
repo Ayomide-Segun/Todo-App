@@ -105,11 +105,11 @@ class RegisterView(APIView):
 def forgot_password(request):
     email = request.data.get("email")  # username OR email
     try:
-        user = User.objects.get(email=email)
+        user = User.objects.filter(email=email).first()
     except User.DoesNotExist:
         # IMPORTANT: same response no matter what
         return Response({
-            "message": "If the account exists, a reset link was sent."
+            "error": "User not found"
         })
         
     uid = urlsafe_base64_encode(force_bytes(user.pk))
