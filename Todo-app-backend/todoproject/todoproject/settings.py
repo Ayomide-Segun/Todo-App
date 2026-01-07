@@ -74,7 +74,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'todoapp',
-    'corsheaders'    
+    'corsheaders',
+    'api.apps.ApiConfig'
 ]
 
 MIDDLEWARE = [

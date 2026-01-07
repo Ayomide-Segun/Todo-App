@@ -8,14 +8,6 @@ def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'todoproject.settings')
     try:
-        import django
-        django.setup
-        try:
-            from api.create_superuser import run
-            run()
-        except Exception as e:
-            print("Superuser creation skipped:", e)
-            
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(

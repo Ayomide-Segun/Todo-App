@@ -22,3 +22,4 @@ def run():
     user.save()
 
     print("Superuser ensured:", username)
+    
