@@ -52,7 +52,8 @@ export function TodoInput(props){
             }}>
                 <p
                     style={{
-                        fontWeight: "bold"
+                        fontWeight: "bold",
+                        fontSize: "20px"
                     }}
                 >Add Tasks</p>
             </div>

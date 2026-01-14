@@ -6,6 +6,8 @@ nav{
     outline: none;
     border: none;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
 }
 .tab:focus{
     outline: none;
