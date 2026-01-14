@@ -6,31 +6,31 @@ form{
 }
 .input-field{
     width: 100%;
-    border: 2px solid rgb(140, 140, 147) ;
+    border: 2px solid;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     padding: 10px;
     border-radius: 5px;
-
 }
 .entry-field, .entry-label{
     width: 90%;
     margin: auto;
     border: none;
+    color: rgb(140, 140, 147);
 }
 .entry-field{
     height: 40px;
     outline: none;
 }
 .entry-field:hover{
-    background-color: rgba(97, 97, 102, 0.292);
+    background-color: #071a9438;
+    color: white;
     border-radius: 4px;
     outline: none;
 }
 .entry-field:active{
     outline: none;
-    border: 1px solid #071a9438;
 }
 .entry-field:focus{
     outline: none;
@@ -50,7 +50,6 @@ form{
     width: 30%;
     margin: 0 3px;
     padding: 0 20px;
-    background-color: white;
     border-radius: 5px;
     font-weight: bold;
     font-size: 15px;

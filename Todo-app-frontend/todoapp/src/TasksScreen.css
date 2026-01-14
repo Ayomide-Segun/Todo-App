@@ -3,9 +3,9 @@ nav{
     justify-content: center;
 }
 .tab{
-    background-color: white;
     outline: none;
     border: none;
+    border-radius: 10px;
 }
 .tab:focus{
     outline: none;

@@ -50,7 +50,11 @@ export function TodoInput(props){
                 justifyContent: 'center',
                 marginTop: '0'
             }}>
-                <p>Add Tasks</p>
+                <p
+                    style={{
+                        fontWeight: "bold"
+                    }}
+                >Add Tasks</p>
             </div>
             <form
                 className="px-30 md:px-20"
@@ -84,6 +88,7 @@ export function TodoInput(props){
                         name="projectName" 
                         id="projectName" 
                         value={projectName}
+                        placeholder="Enter project name"
                         onChange={(event) => {
                         event.preventDefault()
                 setProjectName(event.target.value)
@@ -183,10 +188,10 @@ export function TodoInput(props){
                         type="button"
                         className="AI-button px-3 text-sm md:px-0 md:text-lg"
                         onClick={()=>{
-                            // if(!token){
-                            //     alert('Login to use AI Assistant')
-                            //     return
-                            // }
+                            if(!token){
+                                alert('Login to use AI Assistant')
+                                return
+                            }
                             navigate('/aiAssistant')
                             setAiProject(projectName)
                         }}

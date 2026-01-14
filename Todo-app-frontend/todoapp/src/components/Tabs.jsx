@@ -7,7 +7,7 @@ export function Tabs(props){
         <nav>
             {
                 tabs.map((tab, tabIndex) => {
-                    return <button 
+                    return <div
                         key={tabIndex}  
                         className={clsx(
                             "tab px-3 sm:p-5 text-sm sm:text-xl",
@@ -18,7 +18,7 @@ export function Tabs(props){
                         onClick={()=> {setClickedTab(tab)
                         }
                         }
-                    >{tab}</button>
+                    >{tab}</div>
                 })
             }
         </nav>
