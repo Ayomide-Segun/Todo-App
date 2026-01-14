@@ -4,9 +4,10 @@ export function NotificationsPopUp(props){
     const { notification, setNotification, navigate, exceededTasks, setJustStartedClicked,         setEndingTodayClicked, setOpenNotificationPopUp, setClickedTab, setExceededTasksClicked} = props
     return(
         <div
-            className="notification-container"
+            className="notification-container w-1/2 md:w-1/4"
         >
             <p
+                className="text-lg md:text-xl"
                 style={{
                     color: "rgb(97, 97, 102)",
                     fontWeight: "bold",
@@ -20,7 +21,7 @@ export function NotificationsPopUp(props){
                 notification?.map((n, key) => 
                     <div
                         key={key}
-                        className="notification-message"
+                        className="notification-message text-sm md:text-lg"
                         onClick={(e)=>{
                             e.preventDefault()
                             if(n.id === 1){

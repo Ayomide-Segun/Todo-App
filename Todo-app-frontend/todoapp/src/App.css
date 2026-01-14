@@ -28,11 +28,8 @@ header{
 }
 .logo{
   height: 40px;
-  position: relative;
-  top: 8px;
   margin-right: 25px;
   cursor: pointer;
-
 }
 .notification{
   margin: 0 40px;
@@ -76,8 +73,19 @@ header{
 .notification-number:hover{
   border: none;
 }
+.header-left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
 .header-center{
   margin-left: 80px;
+}
+.header-right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .logout{
   border: none;
@@ -115,13 +123,13 @@ header{
   color: rgb(97, 97, 102);
 }
 .open-side-bar{
+  margin-left: 20%;
   width: 80%;
-  margin-left: 15%;
 }
 .sidebar{
   display: flex;
   flex-direction: column;
-  width: 15%;
+  width: 20%;
   position: fixed;
   top: 80px;
   padding: 1px 0 0;
@@ -135,6 +143,7 @@ header{
   border: none;
   outline: none;
   margin-bottom: 5px;
+  padding: 5px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   box-shadow: 0 3px 5px #071a9458;
@@ -163,9 +172,9 @@ header{
   background-color: white;
   margin-top: 65px;
   position: fixed;
+  padding-top: 10px;
   top: 0px;
   right: 30px;
-  width: 25%;
   height: 40%;
   border-radius: 10px;
   box-shadow: 0 3px 10px #2b43e2;

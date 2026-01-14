@@ -52,7 +52,11 @@ export function TodoInput(props){
             }}>
                 <p>Add Tasks</p>
             </div>
-            <form method="POST" action="/tasks/">
+            <form
+                className="px-30 md:px-20"
+                method="POST" 
+                action="/tasks/"
+            >
                 <div className="input-field">
                     <label htmlFor="dropdown" className="entry-label">Task Group</label>
                     <select 
@@ -124,7 +128,7 @@ export function TodoInput(props){
                 <div className="input-field intensity">
                     <label htmlFor="intensity"
                     >Intensity</label><br/>
-                    <div>
+                    <div className="intensity-div">
                         <input type="button" 
                             value="High" 
                             id="intensity" 
@@ -169,7 +173,7 @@ export function TodoInput(props){
                     
                 </div>
                 {(selectedTaskGroup && intensity && projectName && noOfDays > 1 )&& <article className="ai-assistant-instruction">
-                    <p className="proceed-instruction">
+                    <p className="mb-10 md:mb-10">
                         Click <span className="instruction-span">Add Task</span>  to add it manually, or click <span className="instruction-span">AI Assistant</span>  to auto-split it across {noOfDays} days (from {formattedStartDate} to {formattedEndDate}).
                     </p>
                 </article>}
@@ -177,12 +181,12 @@ export function TodoInput(props){
                 <div className="add-task-button-div">
                     {(selectedTaskGroup && intensity && projectName && noOfDays > 1 )&&<button 
                         type="button"
-                        className="AI-button"
+                        className="AI-button px-3 text-sm md:px-0 md:text-lg"
                         onClick={()=>{
-                            if(!token){
-                                alert('Login to use AI Assistant')
-                                return
-                            }
+                            // if(!token){
+                            //     alert('Login to use AI Assistant')
+                            //     return
+                            // }
                             navigate('/aiAssistant')
                             setAiProject(projectName)
                         }}
@@ -193,7 +197,7 @@ export function TodoInput(props){
                     type="submit" 
                     value="Add Task" 
                     className={`
-                        add-task-button 
+                        add-task-button px-5 text-sm md:px-5 md:text-lg
                         ${(selectedTaskGroup && intensity && projectName && noOfDays > 1 ) ? 'ai-included' : ''}
                     `}
                     onClick={(e) => {

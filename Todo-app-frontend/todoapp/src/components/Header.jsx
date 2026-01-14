@@ -5,10 +5,12 @@ import { NotificationsPopUp } from "./NotificationsPopUp.jsx"
 import { useContext, useState, useEffect } from "react"
 import { AppContext } from "../contexts/AppContext.jsx"
 import { SmallerComponentsContext } from "../contexts/SmallerComponentsContext.jsx"
+import clsx from 'clsx'
 
 export function Header(props){
 
-    const { navigate, token} = props 
+    const { navigate, token} = props
+    console.log(token) 
 
     const {todos, today, setClickedTab} = useContext(AppContext)
 
@@ -109,7 +111,7 @@ export function Header(props){
             <header
                 className={hidden ? 'hide-header' : ''}
             >
-                <div className='header-left'>
+                <div className={`header-left`}>
                     <img 
                         className='logo' 
                         src="/logo.png" 
@@ -117,7 +119,7 @@ export function Header(props){
                         onClick={()=> navigate('/')}
                     />
                     <FaBars
-                        className='burger-menu icon'
+                        className='icon'
                         onClick={() => 
                             setOpenSidebar(!openSidebar)} 
                     />
@@ -140,7 +142,10 @@ export function Header(props){
                         </button>
                     }
                     <button 
-                        className={`logout ${auth === 'Sign in' ? 'sign-in' : ''}`}
+                        className={clsx(
+                            "logout hidden md:block",
+                            auth === "Sign in" && "sign-in"
+                        )}
                         onClick={()=>{
                             if(auth === 'Logout'){
                                 localStorage.removeItem("token")
@@ -157,6 +162,8 @@ export function Header(props){
                 openSidebar && <SideBar 
                     closeSidebar={() => setOpenSidebar(false)}
                     navigate={navigate}
+                    auth={auth}
+                    setAuth={setAuth}
                     {...props}
                 />
             }

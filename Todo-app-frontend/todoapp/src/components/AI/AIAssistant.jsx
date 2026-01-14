@@ -89,7 +89,8 @@ export function AIAssistant(props) {
                 )
             )
         })
-        .finally(()=>  setLoading(false))
+        .finally(()=>  
+        setLoading(false))
     }
 
     function handleSave(input){
@@ -115,7 +116,7 @@ export function AIAssistant(props) {
     },[prompt])
 
     return(
-        <main className={`ai-container ${openSidebar ? 'open-side-bar' : ''}`} >
+        <main className={`ai-container px-5 lg:px-28 ${openSidebar ? 'open-side-bar' : ''}`} >
             <div className="ai-card">
                 <p className="prompt">Provide a detailed description of your task (<span style={projectNameStyling}>{aiProject}</span>).</p>
             </div>
@@ -132,15 +133,15 @@ export function AIAssistant(props) {
             }
             {buttonsDisplay && <div className="ai-buttons-div">
                 <button 
-                    className="ai-save-button"
+                    className="ai-save-button w-full mr-4 md:mr-10 md:w-[15%]"
                     onClick={() => handleSave(inputDetails)}
                 >Save</button>
                 <button
-                    className="ai-delete-button"
+                    className="ai-delete-button w-full mr-4 md:mr-10 md:w-[15%]"
                     onClick={() => handleDelete()}
                 >Delete</button>
                 <button
-                    className="ai-edit-button"
+                    className="ai-edit-button w-full mr-4 md:mr-10 md:w-[15%]"
                     onClick={() => 
                         setButtonsDisplay(!buttonsDisplay)
                     }

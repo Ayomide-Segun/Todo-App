@@ -62,25 +62,24 @@ export function RegisterScreen(){
             style={{
                 display: "flex",
                 justifyContent: "center",
-                height: "90%",
                 alignItems: "center",
             }}
         >
             <form 
                 onSubmit={handleSubmit}
-                className='register-form'
+                className='register-form w-full h-full md:w-1/2 md:h-9/10'
                 >
                 <div className='header'>
                     <div>
                         <img className='app-logo' src="/logo.png" alt="logo of todo app" />
                     </div>
                     
-                    <h2 className='authenticate'>Sign Up</h2>
+                    <h2 className='authenticate text-xl'>Sign Up</h2>
                 </div>
 
 
                 <input 
-                    className='authentication-input'
+                    className='authentication-input text-lg md:text-xl'
                     type="text" 
                     id='user-name' 
                     name='user-name' 
@@ -94,7 +93,7 @@ export function RegisterScreen(){
                 />
 
                 <input 
-                    className='authentication-input'
+                    className='authentication-input text-lg md:text-xl'
                     type="email" 
                     id='email' 
                     name='email' 
@@ -107,9 +106,11 @@ export function RegisterScreen(){
                     }}
                 />
                 <div className='password-div'>
-                    <p className='password-instruction'>Password must be at least 8 characters long and contain at least 1 number and 1 symbol.</p>
+                    <p      
+                        className='password-instruction text-sm md:text-lg'
+                    >Password must be at least 8 characters long and contain at least 1 number and 1 symbol.</p>
                     <input 
-                        className={passwordCorrect === null ? 'before-password' : 'password'}
+                        className={` text-lg md:text-xl ${passwordCorrect === null ? 'before-password' : 'password'}`}
                         type="password" 
                         id='password' 
                         name='password' 
@@ -139,7 +140,7 @@ export function RegisterScreen(){
                 
                 <div className='password-div'> 
                     <input 
-                        className={repeatPasswordCorrect === null ? 'before-password' : 'password'}
+                        className={`text-lg md:text-xl ${repeatPasswordCorrect === null ? 'before-password' : 'password'}`}
                         type="password" 
                         id='repeat-password' 
                         name='repeat-password' 

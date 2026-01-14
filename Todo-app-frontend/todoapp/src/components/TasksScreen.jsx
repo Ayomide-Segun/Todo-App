@@ -11,7 +11,7 @@ import { AppContext } from "../contexts/AppContext.jsx";
 import { SmallerComponentsContext } from "../contexts/SmallerComponentsContext.jsx";
 
 export function TasksScreen(props){
-    const {todos, today, checkedIn, setCheckedIn, getDateRange, setTodos, clickedTab, setClickedTab, activeCheckInId, setActiveCheckInId, setEditingTodo, searchValue, setSearchValue, calculatePercentage, updateDate, setUpdateDate, deleteTask} = useContext(AppContext)
+    const { today, checkedIn, setCheckedIn, getDateRange, setTodos, clickedTab, setClickedTab, activeCheckInId, setActiveCheckInId, setEditingTodo, searchValue, setSearchValue, calculatePercentage, updateDate, setUpdateDate, deleteTask} = useContext(AppContext)
 
     const {openDeletePopUp, setOpenDeletePopUp, openSidebar, justStartedClicked, endingTodayClicked, setOpenNotificationPopUp, setAddTodoShowing} = useContext(SmallerComponentsContext)
 
@@ -129,7 +129,11 @@ export function TasksScreen(props){
 
     return(
         <main 
-            className={openSidebar ? 'open-side-bar' : ''}
+            className={`
+                px-10 md:px-30
+                ${openSidebar && 
+                'open-side-bar'} 
+            `}
             onClick={()=> setOpenNotificationPopUp(false)}
         >
             <div style={searchDiv}>
@@ -145,6 +149,7 @@ export function TasksScreen(props){
                 clickedTab={clickedTab}           
                 setClickedTab={setClickedTab}
                 todos={todos}
+                openSidebar={openSidebar}
             />
             <p className="check-in-instruction">
                 Click on each task to check-in for today!
@@ -160,17 +165,17 @@ export function TasksScreen(props){
                         clickedTab === "All" || todo['status'] === clickedTab
                     ).map((todo, todoIndex) => {
                         return (
+
                             <div 
                                 ref={element => refs.current[todo['id']] = element}
                                 className={`
-                                    ${activeCheckInId === todo['id'] && !todo['ai_use']? "expanded-todo-card" : "contracted-todo-card"} 
+                                    ${activeCheckInId === todo['id'] && !todo['ai_use']? "expanded-todo-card w-full md:w-2/5w-full md:w-2/5 flex-col  justify-center  md:flex-row justify-start" : "contracted-todo-card"} 
                                     ${highlight &&(justStartedClicked || endingTodayClicked)   ? 'highlight' : ''}
                                 `}
                                 key={todo.id}
                             >
                                 <TodoCard  
                                     todo={todo}
-                                    todoIndex={todoIndex}
                                     activeCheckInId={activeCheckInId}
                                     setActiveCheckInId={setActiveCheckInId}
                                     calculatePercentage={calculatePercentage}
@@ -187,10 +192,8 @@ export function TasksScreen(props){
                                     openDeletePopUp={openDeletePopUp}
                                 />}
                                 {(activeCheckInId === todo['id'] && !todo['ai_use']) && 
-                                <div
-                                    className="calender-div"
-                                >
-                                    <p className="check-in-instruction specific-instruction">Click today's date to check in</p>
+                                <div>
+                                    <p className="check-in-instruction specific-instruction text-sm md:text-lg">Click today's date to check in</p>
                                     <Calender
                                     todo={todo}
                                     getDateRange={getDateRange}
@@ -204,7 +207,8 @@ export function TasksScreen(props){
                                 {
                                     (updateDate === todo['id'] && today > todo['end_date']) && 
                                     <div>
-                                        <input 
+                                        <input
+                                            className="text-sm Md:text-lg"
                                             type="date" 
                                             name="update-date"
                                             min={today}
@@ -219,9 +223,9 @@ export function TasksScreen(props){
                                     </div>
                                 }
                             </div>
-                        )
-                    }).reverse()
-                } 
+                        ) 
+                    }).reverse()    
+                }
             </div>
             
         </main>

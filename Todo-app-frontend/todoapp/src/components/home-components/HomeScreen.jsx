@@ -49,29 +49,27 @@ export function HomeScreen(props) {
     }, [])
     
     return(
-        
         <main 
-            className={openSidebar ? 'open-side-bar' : ''}
+            className={openSidebar && 'open-side-bar'}
             onClick={()=> setOpenNotificationPopUp(false)}
         >
-            <p 
-                className='title'
-                style={{
-                    marginBottom: "10px"
-                }}
-            > Hello {username}, welcome back!</p >
-            <section className='task-summary'>
-                <div>
-                    <p className='task-update'>{taskUpdate}</p>
+            <h2 
+                className='title '
+            > Hello {username}, welcome back!</h2 >
+            <section 
+                className='task-summary p-10 flex-col md:pw-60 md:p-20 sm:flex-row'
+            >
+                <div className='flex-col md:flex-col'>
+                    <p className='task-update text-center md:text-start'>{taskUpdate}</p>
                     <button 
-                    
-                        className='view-task-button'
+                        className='view-task-button ml-4 mr-4 md:ml-0 md:ml-0'
                         onClick={()=>{
                             navigate('/tasks')
                         }}
                     >View Task</button>
                 </div>
-                <div className='general-progress-bar'>
+                <div 
+                className='w-1/2 mt-10 sm:w-24 md:mt-0'>
                     <CircularProgressbar 
                         value={rangePercentage}            
                         text={`${rangePercentage}%`}
@@ -84,7 +82,14 @@ export function HomeScreen(props) {
                 </div>
             </section>
             <section className='in-progress'>
-                <h2>In Progress</h2>
+                <h2
+                    style={{
+                        fontWeight: "bold",
+                        fontSize: "24px",
+                        marginBottom: "10px"
+                    }}
+                >In Progress</h2
+                >
                 {
                     todos.some(todo => todo.status === 'In progress') ? 
                     <div className='scrollable-div' >
@@ -109,7 +114,13 @@ export function HomeScreen(props) {
                 
             </section>
             <section>
-                <h2>Task Group</h2>
+                <h2
+                    style={{
+                        fontWeight: "bold",
+                        fontSize: "24px",
+                        marginBottom: "10px"
+                    }}
+                >Task Group</h2>
                     {taskGroup.map((group, groupIndex) => {
                         return <TaskGroupCards 
                             key={groupIndex} 

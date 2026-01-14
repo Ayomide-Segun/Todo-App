@@ -40,18 +40,18 @@ export function ForgotPassword(){
             }}
         >
             
-            <form className='login-form'>
+            <form className='login-form w-full h-8/10 p-0 md:w-1/2 md:h-1/2'>
                 
                 
                 <div className='header'>
                     <img className='app-logo' src="/logo.png" alt="logo of todo app" />
                     
-                    <h2 className='authenticate'>Forgot Password</h2>
+                    <h2 className='authenticate text-lg '>Forgot Password</h2>
                 </div>
                 {!emailSent ? 
-                <div className='email-div'>
+                <div className='email-div w-full md:w-1/2'>
                     <input 
-                    className='authentication-input email'
+                    className='authentication-input text-sm md:text-lg email'
                     type="email" 
                     id='email' 
                     name='email' 
@@ -64,7 +64,7 @@ export function ForgotPassword(){
                     }}
                 />
                     <button
-                        className='submit-button'
+                        className='submit-button text-sm  md:text-lg'
                         onClick={(e)=> handleSubmit(e, email)}
                     >
                         Reset

@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 export function Tabs(props){
     const {setClickedTab, clickedTab, todos} = props
     const tabs = ['All', 'Not started', 'In progress', 'Completed', 'Exceeded']
@@ -8,11 +9,11 @@ export function Tabs(props){
                 tabs.map((tab, tabIndex) => {
                     return <button 
                         key={tabIndex}  
-                        className={`
-                            tab 
-                            ${clickedTab === tab ? 'clicked-tab' : ''}
-                            ${noOfCritical > 0 && tab === 'Exceeded' ? 'critical' : ''}
-                        `}
+                        className={clsx(
+                            "tab px-3 sm:p-5 text-sm sm:text-xl",
+                            clickedTab === tab && 'clicked-tab',
+                            (noOfCritical > 0 && tab === 'Exceeded') && 'critical'
+                        )}
                         id="tab"
                         onClick={()=> {setClickedTab(tab)
                         }

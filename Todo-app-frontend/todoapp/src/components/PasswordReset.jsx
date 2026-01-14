@@ -71,14 +71,14 @@ export function PasswordReset(props){
                 alignItems: "center"
             }}
         >
-            <form className='login-form'  onSubmit={(e)=> handleSubmit(e, uid, token, userDetails.password)}>
+            <form className='register-form w-full h-full md:w-1/2 md:h-9/10'  onSubmit={(e)=> handleSubmit(e, uid, token, userDetails.password)}>
                 <div className='header'>
                         <img className='app-logo' src="/logo.png" alt="logo of todo app" />
                     
-                    <h2 className='authenticate'>Reset Password</h2>
+                    <h2 className='authenticate text-sm md:text-lg '>Reset Password</h2>
                 </div>
                 <p 
-                    className='password-instruction'
+                    className='password-instruction text-sm md:text-lg'
                     style={{
                         marginBottom: "15px"
                     }}
@@ -88,7 +88,7 @@ export function PasswordReset(props){
                 
                 <div className='password-div'>               
                     <input 
-                        className={passwordCorrect === null ? 'before-password' : 'password'}
+                        className={` text-lg md:text-xl' ${passwordCorrect === null ? 'before-password' : 'password'}`}
                         type="password" 
                         id='password' 
                         name='password' 
@@ -102,9 +102,10 @@ export function PasswordReset(props){
                             }}
                     />
                     {passwordCorrect === true &&
-                        <FaCheck
+                        <FaCheck 
+                            
                             style={{
-                                    marginLeft: "7px"
+                                marginLeft: "7px"
                             }}
                             color='#66ff00'
                             size={24}
@@ -114,14 +115,14 @@ export function PasswordReset(props){
                         style={{
                             marginLeft:"7px"
                         }}
-                        color='#ff0000f'
+                        color='#ff0000ff'
                         size={24}
                     />}
                 </div>
                                 
                 <div className='password-div'> 
                     <input 
-                        className={repeatPasswordCorrect === null ? 'before-password' : 'password'}
+                        className={`text-lg md:text-xl'  ${repeatPasswordCorrect === null ? 'before-password' : 'password'}`}
                         type="password" 
                         id='repeat-password' 
                         name='repeat-password' 

@@ -45,7 +45,7 @@ export function SubTaskScreen(props){
 
     const project_id = todo?.project_id
 
-    const aiResponse = prompt?.at(-1)?.ai_response
+    const aiResponse = prompt?.at(-1)?.ai_response;
     
     const subtasks = useMemo(() => {
     if (!aiResponse) return null;
@@ -101,19 +101,20 @@ export function SubTaskScreen(props){
     }, [project_id])
 
     useEffect(() => {
-    if (!activeCheckInId) {
-        setTodoLoading(false)
-        return
-    }
-    setTodoLoading(true)
+        if (!activeCheckInId) {
+            setTodoLoading(false)
+            return
+        }
+        setTodoLoading(true)
 
-    api.get(`todos/${activeCheckInId}/`)
-        .then(res => {
-            setTodo(res.data)
-            localStorage.setItem("todo", JSON.stringify(res.data))
-        })
-        .finally(() => setTodoLoading(false))
-}, [activeCheckInId]);
+        api.get(`todos/${activeCheckInId}/`)
+            .then(res => {
+                setTodo(res.data)
+                localStorage.setItem("todo", JSON.stringify(res.data))
+            })
+            .finally(() => setTodoLoading(false))
+    }, [activeCheckInId]);
+console.log(todo)
 
     return(
         <main 
@@ -126,21 +127,24 @@ export function SubTaskScreen(props){
                 <>
                     <>
                         <div
+                        className="mb-5 md:mb-0"
                         style={{
                             display: "flex"
                         }}
                         >
-                            <p className="title">{todo['project_name']}</p>
-                        <p 
-                            style={{
-                                color: `rgb(${taskGroupColor})`
-                            }}
-                        >{todo['task_group']}</p>
+                            <p className="title text-lg md:text-xl">{todo['project_name']}</p>
+                            <p
+                                className="text-sm md:text-lg"
+                                style={{
+                                    color: `rgb(${taskGroupColor})`
+                                }}
+                            >{todo['task_group']}</p>
                         </div>
                         <div
                             style={{
                                 display: "flex",
-                                justifyContent: "space-between"
+                                justifyContent: "space-between",
+                                marginTop: "18px"
                             }}
                         >
                             <p>{formattedStartDate}</p>

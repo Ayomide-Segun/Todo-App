@@ -10,7 +10,7 @@ export function TaskProgressCard(props){
 
     return( 
         <div 
-            className="task-progress-card"
+            className="task-progress-card w-full md:w-1/4"
             onClick={()=>{
                 setClickedTab('In progress')
                 setActiveCheckInId(todo['id'])

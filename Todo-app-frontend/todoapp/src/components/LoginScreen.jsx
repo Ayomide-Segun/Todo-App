@@ -14,8 +14,9 @@ export function LoginScreen(props){
 
     function handleSubmit(e){
         e.preventDefault()
-        Login(loginDetails.username, loginDetails.password)
+        //Login(loginDetails.username, loginDetails.password)
         setUsername(loginDetails.username)
+        navigate('/')
     }
 
     useEffect(()=>{
@@ -36,15 +37,20 @@ export function LoginScreen(props){
                 alignItems: "center"
             }}
         >
-            <form className='login-form' method='POST' onSubmit={handleSubmit}>
-                <div className='header'>
+            <form 
+            className='login-form w-full h-full md:w-1/2 md:h-9/10' 
+            method='POST' onSubmit={handleSubmit}>
+                <div className='header m-5 md:m-0'>
                         <img className='app-logo' src="/logo.png" alt="logo of todo app" />
                     
-                    <h2 className='authenticate'>Welcome back</h2>
+                    <h2 
+                        className='authenticate text-xl'
+                    >Welcome back</h2>
                 </div>
                 
 
                 <p
+                className="text-lg md:text-xl"
                 style={{
                         margin: "0"
                     }}
@@ -59,7 +65,7 @@ export function LoginScreen(props){
                 >Click here to create an account</a></p>
 
                 <input 
-                    className='authentication-input'
+                    className='authentication-input text-lg md:text-xl'
                     type="text" 
                     id='user-name' 
                     name='user-name' 
@@ -72,7 +78,7 @@ export function LoginScreen(props){
                 />
 
                 <input 
-                    className='authentication-input'
+                    className='authentication-input text-lg md:text-xl'
                     type="password" 
                     id='password' 
                     name='password' 

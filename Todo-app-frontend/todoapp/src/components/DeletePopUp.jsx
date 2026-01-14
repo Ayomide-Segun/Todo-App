@@ -6,11 +6,11 @@ export function DeletePopUp(props){
         backgroundColor: "white",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        width: "30%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        padding: "15px"
     }
     console.log(openDeletePopUp)
 
@@ -26,19 +26,25 @@ export function DeletePopUp(props){
                 height: "100%"
             }}
         >
-            <div style={deletePopUpStyle}>
-                <p>
+            <div 
+                className="w-[70%] md:w-[30%]"
+                style={deletePopUpStyle}>
+                <p
+                    className="text-lg md:text-xl"
+                >
                     Are you sure you want to delete this task
                 </p>
                 <div>
-                    <button 
+                    <button
+                        className="text-lg md:text-xl"
                         style={buttonStyle}
                         onClick={()=> {
                             deleteTask(openDeletePopUp)
                             setOpenDeletePopUp(null)
                         }}
                     >Delete</button>
-                    <button 
+                    <button
+                        className="text-lg md:text-xl"
                         style={buttonStyle}
                         onClick={()=> setOpenDeletePopUp('')}
                     >Cancel</button> 

@@ -3,7 +3,7 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 import api from "../api/axios";
 
 export function TodoCard(props){
-    const {todo,  setEditingTodo, setActiveCheckInId,  activeCheckInId, calculatePercentage, setUpdateDate, setOpenDeletePopUp, navigate, setTodos} =props
+    const {todo, setEditingTodo, setActiveCheckInId,  activeCheckInId, calculatePercentage, setUpdateDate, setOpenDeletePopUp, navigate, setTodos} =props
 
     const taskGroupColor = todo['task_group'] === "Personal" ? '138, 43, 226' : todo['task_group'] === "Office" ? '253, 115, 138' : '220, 147, 11'
 
@@ -27,10 +27,11 @@ export function TodoCard(props){
 
     return(
         <div 
-            className="todo-card"
+            className="todo-card w-full md:w-4/6"
             
         >
             <div
+                className={ todo['status'] === 'Exceeded' ? 'mr-5': 'mr-10 md:mr-50'}
                 onClick={() => {
                         setActiveCheckInId(todo['id'])
                         if(todo['status'] === 'Completed'){
@@ -73,14 +74,16 @@ export function TodoCard(props){
                     alignItems: "flex-start",
                     height: "100%",
                     width: "80%",
-                    paddingRight: "150px",
                 }}>
-                <p style={{
+                <p 
+                    className="text-xs md:text-lg"
+                    style={{
                         margin: "0",
                         fontSize: "18px"
                     }}
                 >{todo['project_name']}</p>
                 <p 
+                    className="text-2xs md:text-sm"
                     style={{
                         margin: "0",
                         fontSize: "15px",
@@ -92,7 +95,8 @@ export function TodoCard(props){
                 <div className="date-time-div">
                     <FiClock size={16} color="#2b43e2" />
                     <p 
-                        className="date-time" style={{
+                        className="date-time text-xs md:text-sm" 
+                        style={{
                         margin: "0 10px"
                     }}
                 >{todo['entry_date_time']}</p>
@@ -100,6 +104,7 @@ export function TodoCard(props){
                 <progress className={progressType} value={percentage} max="100"></progress>
             </div>
             <div
+                className="w-1/2 mr-5 md:w-1/6 md:mr-0"
                 onClick={() => {
 
                         if (activeCheckInId === todo['id']) {
@@ -116,7 +121,7 @@ export function TodoCard(props){
                 justifyContent: "space-between",
                 alignItems: "center",
                 height: "100%",
-                width: "10%",}}
+                }}
             >
                 <div 
                     className="img-div"
@@ -145,11 +150,15 @@ export function TodoCard(props){
                     display: "flex",
                     flexDirection: "column", 
                     alignItems: "center",
+                    justifyContent: "space-around",
                     height: "100%",
                     width: "10%"
                 }}
             >
-                <FaEdit 
+                <FaEdit  
+                    className={
+                        todo['status'] === 'Exceeded' && 'hidden sm:hidden'
+                    }
                     size={18} 
                     color="#2b43e2" 
                     style={{ cursor: "pointer" }} 
@@ -167,8 +176,7 @@ export function TodoCard(props){
                     size={18} 
                     color="red" 
                     style={{ 
-                        cursor: "pointer",
-                        marginTop: "30px",
+                        cursor: "pointer"
                     }} 
                     onClick={(e) => {
                         e.preventDefault()
@@ -177,7 +185,7 @@ export function TodoCard(props){
                 />
                 {todo['status'] === 'Exceeded' && <div>
                     <p 
-                        className="date-extension"
+                        className="date-extension text-xs md:sm "
                         onClick={()=>{
                             setUpdateDate(todo['id'])
                         }}
@@ -185,7 +193,7 @@ export function TodoCard(props){
                         Change end date
                     </p>
                     <p
-                        className="task-completed"
+                        className="task-completed text-xs "
                         onClick={() => 
                             handleCompletion()
                         }
@@ -195,7 +203,6 @@ export function TodoCard(props){
                 </div>}
 
             </div>
-
         </div>
     )
 }

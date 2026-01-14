@@ -12,7 +12,6 @@ import { Routes, Route } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { AppContext } from './contexts/AppContext.jsx'
 import { InputContext } from './contexts/InputContext.jsx'
-// import { AuthContext } from './contexts/AuthContext.jsx'
 import { SmallerComponentsContext } from './contexts/SmallerComponentsContext.jsx'
 import { AIAssistant } from './components/AI/AIAssistant.jsx'
 import { SubTaskScreen } from './components/AI/SubTasksScreen.jsx'
@@ -26,7 +25,7 @@ function App() {
 
   const {todos, setTodos, setCheckedIn} = useContext(AppContext)
 
-  const {aiProject, todoId, project_id, setTodoId, setPrompt} = useContext(InputContext)
+  const {aiProject, todoId, project_id, setTodoId} = useContext(InputContext)
 
   const {lastScrollY, setLastScrollY, openSidebar, openDeletePopUp, exceededTasksValue,exceededTasks, justStarted, endingToday, setHidden, addTodoShowing, headerShowing, lowIntensity, highIntensity} = useContext(SmallerComponentsContext)
 
@@ -78,7 +77,7 @@ function App() {
 
   useEffect(() => {
     
-    // 🚫 Not logged in
+    //🚫 Not logged in
     if (!token) {
       console.log("No token, user not logged in");
       // redirect or show login
@@ -172,7 +171,6 @@ function App() {
             <TasksScreen
               navigate={navigate}
               project_id={project_id}
-              token={token}
             />
           } 
         />
@@ -188,13 +186,11 @@ function App() {
               openSidebar={openSidebar}
               setTodoId={setTodoId}
               navigate={navigate}
-              token={token}
             />
           } 
         />
         <Route path="/tasks/subTasks" element={
             <SubTaskScreen
-              token={token}
             />
           } 
         />
@@ -202,7 +198,6 @@ function App() {
             <AIAssistant
               navigate={navigate}
               openSidebar={openSidebar} 
-              token={token}
             />
           } 
         />

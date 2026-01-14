@@ -1,4 +1,4 @@
-import { FaCheck, FaTimes } from "react-icons/fa"; // FontAwesome
+import { FaCheck } from "react-icons/fa"; // FontAwesome
 import api from "../api/axios";
 
 export function Calender(props){
@@ -8,7 +8,8 @@ export function Calender(props){
 
     return (
         <div 
-            className={`calender  ${todo['ai_use'] ? 'subtask_calender' : ''}`}
+            className={`calender grid-cols-[repeat(auto-fill,minmax(55px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(70px,1fr))] ml-0 md:ml-12 
+                ${todo['ai_use'] && 'subtask_calender grid-columns-[repeat(auto-fill, minmax(70px, 1fr))] w-full Md:grid-columns-[repeat(auto-fill, minmax(100px, 1fr))] md:w-full' }`}
         >
             {(todo['start_date'] && todo['end_date'] ?
                 getDateRange( todo['start_date'], todo['end_date']) : 
@@ -24,9 +25,9 @@ export function Calender(props){
                         <div 
                             key={dateIndex} 
                             className={`
-                                calendar-box 
-                                ${date['full_date'] == today ? "today-box" : ""} 
-                                ${todo['ai_use'] ? 'subtask_calender_box' : ''}
+                                calendar-box text-xs md:text-sm
+                                ${date['full_date'] == today && "today-box"} 
+                                ${todo['ai_use'] && 'subtask_calender_box text-sm  md:lg' }
                                 `}
                             onClick={(e) =>  {todo['ai_use'] && 
                                 e.preventDefault()
@@ -57,8 +58,6 @@ export function Calender(props){
                                             ).catch(err => console.log(err))
                                         }
                                     }).catch(err => console.log(err))
-                                    
-                                    
                                 }
                             }}
                         >
@@ -70,8 +69,8 @@ export function Calender(props){
                                 alreadyCheckedIn &&
                                 <div className="check">
                                     <FaCheck 
-                                        className={todo['ai_use'] ? 
-                                        'ai-calender-check': 'calender-check'}
+                                        className={` ${todo['ai_use'] ? 
+                                        'ai-calender-check absolute left-4': 'calender-check absolute left-6'}`}
                                         size={todo['ai_use'] ? 47 : 29}
                                     />
                                 </div>         

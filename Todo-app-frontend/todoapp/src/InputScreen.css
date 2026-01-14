@@ -1,6 +1,5 @@
 form{
     margin-top: 20px;
-    padding: 0 70px;
 }
 .back-arrow{
     height: 40px;
@@ -42,17 +41,22 @@ form{
 .intensity{
     border: none;
 }
+.intensity-div{
+    display: flex;
+    justify-content: center;
+}
 .high-button, .medium-button, .low-button{
-    width: 32%;
     height: 40px;
+    width: 30%;
     margin: 0 3px;
+    padding: 0 20px;
     background-color: white;
     border-radius: 5px;
     font-weight: bold;
     font-size: 15px;
 }
 .high-button{
-    border-color: red;
+    border: solid 2px red;
     color: red;
 }
 .high-button:hover{
@@ -61,7 +65,7 @@ form{
     border: none;
 }
 .medium-button{
-    border-color: orange;
+    border: solid 2px orange;
     color: orange;
 }
 .medium-button:hover{
@@ -71,11 +75,11 @@ form{
 
 }
 .low-button{
-    border-color: rgb(212, 212, 38);
-    color: rgb(212, 212, 38);
+    border: solid 2px rgb(154, 154, 10);
+    color: rgb(154, 154, 10);
 }
 .low-button:hover{
-    background-color: rgb(241, 241, 70);
+    background-color: rgb(154, 154, 10);
     color: white;
     border: none;
 }
@@ -85,21 +89,17 @@ form{
 .add-task-button{
     background-color: #2b43e2;
     color: white;
-    width: 35%;
     margin: auto;
-    font-size: 18px;
     height: 100%;
     border: none;
     border-radius: 5px;
 }
 .AI-button{
     background-color: #2b43e2;
-    font-size: 18px;
     height: 100%;
     color: white;
     border: none;
     outline: none;
-    width: 35%;
 }
 .AI-button:hover{
     background-color: #071a9458;
@@ -137,7 +137,7 @@ form{
 }
 .low-clicked-intensity{
     opacity: 0.5;
-    background-color: yellow;
+    background-color: rgb(215, 215, 23);
     border: none;
     color: white;
 }
@@ -154,8 +154,6 @@ form{
     width: 100%;
     text-align: center;
     margin: 0px auto 10px;
-}
-.instruction-span{
     font-weight: bold;
     animation: button-pulse 2.5s infinite alternate;
 }

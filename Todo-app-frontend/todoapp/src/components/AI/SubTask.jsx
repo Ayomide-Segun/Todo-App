@@ -29,7 +29,9 @@ export function SubTask(props){
                     setClickedSubTask(!clickedSubTask)
                 }}
             >
-                <p>{subtask}</p>
+                <p
+                    className='text-sm md:text-xl'
+                >{subtask}</p>
             </div>
             {clickedSubTask && <div
                 style={{
