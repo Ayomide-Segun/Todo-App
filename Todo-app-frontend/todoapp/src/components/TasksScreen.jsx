@@ -11,7 +11,7 @@ import { AppContext } from "../contexts/AppContext.jsx";
 import { SmallerComponentsContext } from "../contexts/SmallerComponentsContext.jsx";
 
 export function TasksScreen(props){
-    const { today, checkedIn, setCheckedIn, getDateRange, setTodos, clickedTab, setClickedTab, activeCheckInId, setActiveCheckInId, setEditingTodo, searchValue, setSearchValue, calculatePercentage, updateDate, setUpdateDate, deleteTask} = useContext(AppContext)
+    const {todos, today, checkedIn, setCheckedIn, getDateRange, setTodos, clickedTab, setClickedTab, activeCheckInId, setActiveCheckInId, setEditingTodo, searchValue, setSearchValue, calculatePercentage, updateDate, setUpdateDate, deleteTask} = useContext(AppContext)
 
     const {openDeletePopUp, setOpenDeletePopUp, openSidebar, justStartedClicked, endingTodayClicked, setOpenNotificationPopUp, setAddTodoShowing} = useContext(SmallerComponentsContext)
 
