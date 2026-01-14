@@ -69,7 +69,7 @@ export function RegisterScreen(){
                 onSubmit={handleSubmit}
                 className='register-form w-full h-full md:w-1/2 md:h-9/10'
                 >
-                <div className='header'>
+                <div className='header header m-5 md:m-0'>
                     <div>
                         <img className='app-logo' src="/logo.png" alt="logo of todo app" />
                     </div>
