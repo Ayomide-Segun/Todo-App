@@ -115,11 +115,11 @@ export function RegisterScreen(props){
                         setUserDetails(prev => ({ ...prev, email: value }))
                     }}
                 />
-                <div className='password-div'>
-                    <p      
+                <p      
                         className='password-instruction text-sm md:text-lg'
                     >Password must be at least 8 characters long and contain at least 1 number and 1 symbol.</p>
-                    <input 
+                <div className='password-div'>
+                    <input
                         className={` text-lg md:text-xl ${passwordCorrect === null ? 'before-password' : 'password'}`}
                         type="password" 
                         id='password' 
