@@ -45,6 +45,7 @@ export function AuthContextProvider({children}){
         navigate('/verifyEmail')
         } catch (err) {
             console.log(err)
+            alert('Network error, try again later')
         }
     }
 
