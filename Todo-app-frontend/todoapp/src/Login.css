@@ -62,8 +62,7 @@
     margin-bottom: 20px;
 }
 .login-form > .authentication-input{
-    margin-top: 15px;
-    margin-bottom: 17px;
+    margin: 15px 0 20px;
 }
 .email{
     height: 45px;
