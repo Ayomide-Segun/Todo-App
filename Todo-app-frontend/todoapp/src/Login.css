@@ -61,7 +61,7 @@
 .register-form .authentication-input{
     margin-bottom: 20px;
 }
-.login-form > .authentication-input{
+.login-form .authentication-input{
     margin: 15px 0 20px;
 }
 .email{

@@ -75,6 +75,9 @@ export function LoginScreen(props){
 
                 <input 
                     className='authentication-input text-lg md:text-xl'
+                    style={{
+                        margin: "0"
+                    }}
                     type="password" 
                     id='password' 
                     name='password' 
