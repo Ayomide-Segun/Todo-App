@@ -50,7 +50,7 @@ export function HomeScreen(props) {
     
     return(
         <main 
-            className={openSidebar && 'open-side-bar'}
+            className={openSidebar && 'open-side-bar  ml-[13%] sm:ml-[15%]'}
             onClick={()=> setOpenNotificationPopUp(false)}
         >
             <h2 

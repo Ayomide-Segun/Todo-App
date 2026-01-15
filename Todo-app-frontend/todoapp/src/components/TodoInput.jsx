@@ -52,7 +52,7 @@ export function TodoInput(props){
     },[projectName, startDate, endDate])
 
     return(
-        <main className={openSidebar ? 'open-side-bar ml-[20%] sm:ml-[15%]' : ''}>
+        <main className={openSidebar && 'open-side-bar ml-[20%] sm:ml-[22%] md:ml-[18%]'}>
             <div style={{
                 display: 'flex',
                 alignItems: 'center',

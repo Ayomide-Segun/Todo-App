@@ -116,7 +116,7 @@ export function AIAssistant(props) {
     },[prompt])
 
     return(
-        <main className={`ai-container px-5 lg:px-28 ${openSidebar ? 'open-side-bar' : ''}`} >
+        <main className={`ai-container px-5 lg:px-28 ${openSidebar && 'open-side-bar  open-side-bar ml-[20%] sm:ml-[22%] md:ml-[18%]'}`} >
             <div className="ai-card">
                 <p className="prompt">Provide a detailed description of your task (<span style={projectNameStyling}>{aiProject}</span>).</p>
             </div>

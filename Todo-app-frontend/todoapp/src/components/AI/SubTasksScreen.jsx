@@ -118,7 +118,7 @@ console.log(todo)
 
     return(
         <main 
-            className={openSidebar ? 'open-side-bar' : ''}
+            className={openSidebar && 'open-side-bar  ml-[20%] sm:ml-[23%] lg:ml-[15%]'}
             onClick={()=> setOpenNotificationPopUp(false)}
         >
             
