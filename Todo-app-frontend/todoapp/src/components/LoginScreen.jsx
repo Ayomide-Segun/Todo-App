@@ -14,7 +14,7 @@ export function LoginScreen(props){
 
     function handleSubmit(e){
         e.preventDefault()
-        //Login(loginDetails.username, loginDetails.password)
+        Login(loginDetails.username, loginDetails.password)
         setUsername(loginDetails.username)
         navigate('/')
     }
