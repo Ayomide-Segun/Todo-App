@@ -24,7 +24,6 @@
     width: 90%;
     margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
 }
 .email-div {
     height: 20%;
