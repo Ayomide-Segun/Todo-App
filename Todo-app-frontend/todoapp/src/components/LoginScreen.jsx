@@ -40,7 +40,7 @@ export function LoginScreen(props){
             <form 
             className='login-form w-full h-full md:w-1/2 md:h-9/10' 
             method='POST' onSubmit={handleSubmit}>
-                <div className='header m-5 md:m-0'>
+                <div className='header mb-5 md:mb-0'>
                         <img className='app-logo' src="/logo.png" alt="logo of todo app" />
                     
                     <h2 
@@ -51,12 +51,8 @@ export function LoginScreen(props){
 
                 <p
                 className="text-lg md:text-xl"
-                style={{
-                        margin: "0"
-                    }}
                 >New here? <a     
                     style={{
-                        margin: "0",
                         cursor: "pointer"
                     }}
                     onClick={()=>{
