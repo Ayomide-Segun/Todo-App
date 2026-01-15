@@ -10,6 +10,16 @@ export function AuthContextProvider({children}){
         return saved ? JSON.parse(saved) : ''
     })
     const navigate = useNavigate()
+    const [userDetails, setUserDetails] = useState(() => {
+        const saved = localStorage.getItem("userDetails")
+        return saved ? JSON.parse(saved) : {
+            username:"",
+            password:"",
+            email:"",
+            repeatPassword:""
+
+        }
+    })
     async function Login(username, password){
         try {
         const res = await api.post('login/', {
@@ -26,32 +36,63 @@ export function AuthContextProvider({children}){
         
     }
     
-    async function Register( username, email, password ){
+    async function VerifyEmail( email ){
         try {
-        const res = await api.post('register/', {
-        username, email, password
+        const res = await api.post('verifyEmail/',{ 
+            email
         });
-        alert("Account created 🎉");
-        navigate('/login')
+        alert('A verificaton code has been sent to your email')
+        navigate('/verifyEmail')
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    async function Register( otp, username, email, password ){
+        try {
+        const res = await api.post('register/',{ 
+            otp, username, email, password
+        });
+        alert('Account created successfully!')
+        navigate('/Login')
         } catch (err) {
             const errors = err.response?.data;
-            if (errors?.username) {
-                alert(errors.username[0]);
-            } else if (errors?.email) {
-                alert(errors.email[0]);
-            } else {
-                alert("Registration failed");
-                console.log(err)
+            if(!errors){
+                alert("Network error. Try again later")
+                return
             }
+            if (typeof data === "object") {
+                const messages = [];
+
+                Object.values(data).forEach((value) => {
+                    if (Array.isArray(value)) {
+                        messages.push(value[0]);
+                        alert(messages.join("\n"));
+                        navigate('/register')
+                        return;
+                    } else if (typeof value === "string") {
+                        messages.push(value);
+                        alert(messages.join("\n"));
+                        return;
+                    }
+                });
+
+                
+            }
+
+            alert("Registration failed");
         }
     }
     return(
         <AuthContext.Provider 
             value={{
-                Login, 
+                Login,
+                VerifyEmail, 
                 Register, 
                 username,
-                setUsername
+                setUsername,
+                userDetails,
+                setUserDetails
             }}
         >
             {children}

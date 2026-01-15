@@ -132,7 +132,7 @@ export function TasksScreen(props){
             className={`
                 px-10 md:px-30
                 ${openSidebar && 
-                'open-side-bar'} 
+                'open-side-bar ml-[20%] sm:ml-[23%] lg:ml-[15%]'} 
             `}
             onClick={()=> setOpenNotificationPopUp(false)}
         >

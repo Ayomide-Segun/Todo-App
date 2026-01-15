@@ -6,16 +6,13 @@ import { FaCheck } from 'react-icons/fa'
 import { FaTimes } from 'react-icons/fa'
 
 
-export function RegisterScreen(){
-    const {Register} = useContext(AuthContext)
+export function RegisterScreen(props){
+    const {VerifyEmail, userDetails, setUserDetails} = useContext(AuthContext)
     const {setAddTodoShowing, setHeaderShowing} = useContext(SmallerComponentsContext)
-    const [userDetails, setUserDetails] = useState(
-        {
-        username: "",
-        email: "",
-        password: "",
-        repeatPassword: ""
-    })
+    const {navigate} = props
+
+    console.log(userDetails)
+    
 
     const [passwordCorrect, setPasswordCorrect] = useState(null)
     const [repeatPasswordCorrect, setRepeatPasswordCorrect] = useState(null)
@@ -28,8 +25,12 @@ export function RegisterScreen(){
             setUserDetails(prev => ({...prev, password: "", repeatPassword:""}))
             return;
         }
-        Register(userDetails.username, userDetails.email, userDetails.password)
+        VerifyEmail(userDetails.email)
     }
+
+    useEffect(() => {
+        localStorage.setItem("userDetails", JSON.stringify(userDetails))
+    })
 
     useEffect(()=>{
         function isValidPassword(password) {
@@ -76,7 +77,16 @@ export function RegisterScreen(){
                     
                     <h2 className='authenticate text-xl'>Sign Up</h2>
                 </div>
-
+            <p
+                className="text-lg mb-3 md:text-xl"
+                >Already have an account? <a     
+                    style={{
+                        cursor: "pointer"
+                    }}
+                    onClick={()=>{
+                        navigate("/login")   
+                        }}
+                >Click here to Login</a></p>
 
                 <input 
                     className='authentication-input text-lg md:text-xl'

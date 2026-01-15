@@ -7,7 +7,7 @@ export function AddTodo(props){
     const {setAddTodoShowing} = useContext(SmallerComponentsContext)
     return(
         <div 
-        className="add-todo" 
+        className="add-todo w-20 h-20 bottom-14 rounded-full" 
         onClick={() =>{
             onClick
             setAddTodoShowing(false)

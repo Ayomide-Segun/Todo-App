@@ -31,7 +31,17 @@
     display: flex;
     align-items: center;
     margin-bottom: 70px;
-}.password-instruction{
+}
+.otp-div {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 70px;
+    margin-top: 40px;
+}
+.password-instruction{
     color: #2b43e2;
     font-weight: bold;
     margin-top: 10px;
@@ -57,16 +67,12 @@
     box-shadow: 0 3px 6px #071a9458;
     color: rgb(97, 97, 102);
     padding-left: 30px;
-}
-.register-form .authentication-input{
     margin-bottom: 20px;
 }
-.login-form .authentication-input{
-    margin: 6px 0 20px;
-}
-.email{
+.email, .otp{
     height: 45px;
     width: 85%;
+    margin-bottom: 0;
 }
 .authentication-input:focus, .password:focus, .before-password:focus{
     box-shadow: inset 0 3px 6px #071a9458;
@@ -83,7 +89,6 @@
     padding: 10px;
     box-shadow: 0 3px 6px #071a9458;
     cursor: pointer;
-    margin-top: 10px;
 }
 .authenticate{
     color: white;
@@ -100,5 +105,14 @@ a{
 }
 .recovery{
     margin-bottom: 60px;
+}
+.new-email, .resend-otp{
+    width: 85%;
+    margin-bottom: 10px;
+    text-align: ;
+}
+.resend-otp{  
+    margin-top: 10px;
+    text-align: end;
 }
 

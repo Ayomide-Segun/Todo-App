@@ -14,7 +14,7 @@ export function LoginScreen(props){
 
     function handleSubmit(e){
         e.preventDefault()
-        //Login(loginDetails.username, loginDetails.password)
+        Login(loginDetails.username, loginDetails.password)
         setUsername(loginDetails.username)
         navigate('/')
     }
@@ -75,9 +75,6 @@ export function LoginScreen(props){
 
                 <input 
                     className='authentication-input text-lg md:text-xl'
-                    style={{
-                        margin: "0"
-                    }}
                     type="password" 
                     id='password' 
                     name='password' 

@@ -19,6 +19,7 @@ import {RegisterScreen} from './components/RegisterScreen.jsx'
 import {LoginScreen} from './components/LoginScreen.jsx'
 import {ForgotPassword} from './components/ForgotPassword.jsx'
 import { PasswordReset } from './components/PasswordReset.jsx'
+import { EmailVerification } from './components/EmailVerification.jsx'
 
 
 function App() {
@@ -145,6 +146,12 @@ function App() {
         />
         <Route path="/forgotPassword" element={
             <ForgotPassword
+              navigate={navigate}
+            />
+          }
+        />
+        <Route path="/verifyEmail" element={
+            <EmailVerification
               navigate={navigate}
             />
           }

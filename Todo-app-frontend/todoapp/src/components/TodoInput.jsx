@@ -21,6 +21,15 @@ export function TodoInput(props){
         { day: "numeric", month: "short", year: "numeric" }
     );
 
+    function CheckIfLoggedIn(){
+        if(!token){
+            alert('Login to add task')
+                            navigate('/login')
+                            return
+                        }
+        return
+    }
+
     useEffect(() => {
         if (editingTodo) {
             setProjectName(editingTodo.project_name);
@@ -43,7 +52,7 @@ export function TodoInput(props){
     },[projectName, startDate, endDate])
 
     return(
-        <main className={openSidebar ? 'open-side-bar' : ''}>
+        <main className={openSidebar ? 'open-side-bar ml-[20%] sm:ml-[15%]' : ''}>
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -95,6 +104,9 @@ export function TodoInput(props){
                 setProjectName(event.target.value)
                         }}
                         required
+                        onClick={() => {
+                            CheckIfLoggedIn()
+                        }}
                         
                     />   
                 </div>
@@ -108,6 +120,9 @@ export function TodoInput(props){
                         onChange={(event) => {
                         event.preventDefault()
                     setStartDate(event.target.value)
+                        }}
+                        onClick={() => {
+                            CheckIfLoggedIn()
                         }}
                         disabled={!!editingTodo?.ai_use}
                         required
@@ -128,6 +143,9 @@ export function TodoInput(props){
                         }}
                         disabled={!!editingTodo}
                         required
+                        onClick={() => {
+                            CheckIfLoggedIn()
+                        }}
                     />
                 </div>
 
@@ -146,6 +164,7 @@ export function TodoInput(props){
                             ""}`}
                             onClick={() => {
                                 setIntensity('High')
+                                CheckIfLoggedIn()
                             }}
                             
                         />
@@ -160,6 +179,7 @@ export function TodoInput(props){
                             ""}`}
                         onClick={() => {
                             setIntensity('Medium')
+                            CheckIfLoggedIn()
                         }}
                     />
                     <input 
@@ -173,6 +193,7 @@ export function TodoInput(props){
                         ""}`}
                         onClick={() => {
                             setIntensity('Low')
+                            CheckIfLoggedIn()
                         }}
                     /> 
                     </div>
@@ -212,11 +233,7 @@ export function TodoInput(props){
                             alert("Kindly click an intensity");
                             return;
                         }
-                        
-                        if(!token){
-                            navigate('/login')
-                            return
-                        }
+                        CheckIfLoggedIn()
                         AddTask(inputDetails, false)
                             
                         navigate('/tasks')
