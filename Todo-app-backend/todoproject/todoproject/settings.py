@@ -41,6 +41,14 @@ print("GeNAI Key Loaded:", GENAI_API_KEY[:4] + "…")  # shows first 4 chars
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "otp-cache",
+    }
+}
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 

@@ -1,6 +1,6 @@
 from django import views
 from django.urls import path
-from .views import TodoListCreateAPIView, TodoDetailsAPIView, CheckInsListCreateAPIView, delete_checkIns, ai_assistant, PromptResponseListCreateAPIView, delete_chat_message, RegisterView, forgot_password, PasswordResetConfirmView
+from .views import TodoListCreateAPIView, TodoDetailsAPIView, CheckInsListCreateAPIView, delete_checkIns, ai_assistant, PromptResponseListCreateAPIView, delete_chat_message, RegisterView, forgot_password, PasswordResetConfirmView, verifyEmail
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -30,5 +30,11 @@ urlpatterns = [
         'api/passwordReset/<str:uidb64>/<str:token>/',
         PasswordResetConfirmView.as_view(),
         name="password_reset_confirm"
+    ),
+    
+    path(
+        'api/verifyEmail/',
+        verifyEmail,
+        name="email-verification"
     ),
 ]

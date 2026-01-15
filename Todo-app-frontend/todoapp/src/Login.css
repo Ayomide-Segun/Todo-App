@@ -24,7 +24,6 @@
     width: 90%;
     margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
 }
 .email-div {
     height: 20%;
@@ -47,10 +46,11 @@
     margin-top: 10px;
     margin-bottom: 5px;
     text-align: center;
+    width: 90%;
 }
 .password, .before-password{
     height: 40px;
-    width: 94%;
+    width: 80%;
     font-size: 20px;
     border: none;
     box-shadow: 0 3px 6px #071a9458;
@@ -109,7 +109,6 @@ a{
 .new-email, .resend-otp{
     width: 85%;
     margin-bottom: 10px;
-    text-align: ;
 }
 .resend-otp{  
     margin-top: 10px;

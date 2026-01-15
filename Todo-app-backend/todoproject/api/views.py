@@ -14,10 +14,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from django.conf import settings
 from rest_framework.permissions import IsAuthenticated
-
-
-
-from .utils import get_gemini_response
+from .utils import get_gemini_response, generate_otp
+from django.core.cache import cache
 
 class TodoListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = TodosSerializer
@@ -93,12 +91,41 @@ def ai_assistant(request):
     
 class RegisterView(APIView):
     def post(self, request):
+        email = request.POST.get("email")
+        otp_input = request.POST.get("otp")
+
+        cached_otp = cache.get(f"otp_{email}")
+
+        if not cached_otp: 
+            return Response({"error": "Verification code expired or invalid"}, status=400)
+
+        if cached_otp != otp_input:
+            return Response({"error": "Incorrect verification code"}, status=400)
+
+        cache.delete(f"otp_{email}")  # one-time use 
+
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({"message": "User created"}, status=201)
         return Response(serializer.errors, status=400)
 
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def verifyEmail(request):
+    email = request.data.get("email")
+    otp = generate_otp()
+    cache.set(f"otp_{email}", otp, timeout=300)
+    verification_link = f"http://task-management-app-virid.vercel.app/verifyEmail"
+    
+    send_mail(
+        "Email verification",
+        f"Verification code: {otp}",
+        f"Click the link to reset your password: {verification_link}",
+        settings.EMAIL_HOST_USER,
+        [email],
+    )
+    return otp
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -114,7 +141,7 @@ def forgot_password(request):
         
     uid = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)
-    reset_link = f"http://localhost:5173/passwordReset/{uid}/{token}"
+    reset_link = f"http://task-management-app-virid.vercel.app/passwordReset/{uid}/{token}"
     
     send_mail(
         "Password Reset",

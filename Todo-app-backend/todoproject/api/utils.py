@@ -1,9 +1,8 @@
 from google import genai
+import random
 from django.conf import settings
 
 client = genai.Client(api_key=settings.GENAI_API_KEY)
-
-
 
 def get_gemini_response(user_input):
     try:
@@ -15,3 +14,6 @@ def get_gemini_response(user_input):
     except Exception as e:
         print("Gemini error:", e)
         return "AI failed to respond. Please try again."
+    
+def generate_otp():
+    return str(random.randint(100000, 999999))
