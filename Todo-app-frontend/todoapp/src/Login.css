@@ -57,11 +57,13 @@
     box-shadow: 0 3px 6px #071a9458;
     color: rgb(97, 97, 102);
     padding-left: 30px;
+}
+.register-form .authentication-input{
     margin-bottom: 20px;
 }
-.login-form .authentication-input{
-    margin-top: 25px;
-    margin-bottom: 0;
+.login-form > .authentication-input{
+    margin-top: 15px;
+    margin-bottom: 17px;
 }
 .email{
     height: 45px;
