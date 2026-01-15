@@ -38,7 +38,7 @@ export function LoginScreen(props){
             }}
         >
             <form 
-            className='login-form w-full h-[60%] md:w-1/2 md:h-9/10' 
+            className='login-form w-full h-full md:w-1/2 md:h-9/10' 
             method='POST' onSubmit={handleSubmit}>
                 <div className='header mb-5 md:mb-0'>
                         <img className='app-logo' src="/logo.png" alt="logo of todo app" />
