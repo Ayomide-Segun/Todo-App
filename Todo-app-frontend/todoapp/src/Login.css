@@ -37,10 +37,11 @@
     margin-top: 10px;
     margin-bottom: 5px;
     text-align: center;
+    width: 90%;
 }
 .password, .before-password{
     height: 40px;
-    width: 87%;
+    width: 80%;
     font-size: 20px;
     border: none;
     box-shadow: 0 3px 6px #071a9458;
