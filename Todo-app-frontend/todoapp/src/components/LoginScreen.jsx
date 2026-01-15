@@ -90,7 +90,7 @@ export function LoginScreen(props){
                     style={{
                         display: "flex-end",
                         justifyContent: "end",
-                        width: "70%"
+                        width: "90%"
                     }}
                 >
                     <a 
