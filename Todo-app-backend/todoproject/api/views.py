@@ -123,12 +123,6 @@ def verifyEmail(request):
     otp = generate_otp()
     cached_otp = cache.set(f"otp_{email}", otp, timeout=300)
     
-    if not cached_otp:
-        return Response(
-            {"error": "OTP expired or invalid"},
-            status=400
-        )
-    
     verification_link = f"http://task-management-app-virid.vercel.app/verifyEmail"
     send_mail(
         "Email verification",
