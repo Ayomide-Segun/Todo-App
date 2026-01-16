@@ -113,8 +113,13 @@ MIDDLEWARE = [
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173"
+    "https://task-management-app-virid.vercel.app"
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://task-management-app-virid.vercel.app",
+]
+
 
 CORS_ALLOW_ALL_HEADERS = True
 
