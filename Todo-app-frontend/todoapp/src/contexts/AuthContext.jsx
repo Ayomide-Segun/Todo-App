@@ -36,13 +36,13 @@ export function AuthContextProvider({children}){
         
     }
     
-    async function VerifyEmail( email ){
+    async function VerifyEmail(email){
         try {
-        const res = await api.post('verifyEmail/',
-            email
-        );
-        alert('A verificaton code has been sent to your email')
-        navigate('/verifyEmail')
+            const res = await api.post('verifyEmail/',
+                {email}
+            );
+            alert('A verificaton code has been sent to your email')
+            navigate('/verifyEmail')
         } catch (err) {
             console.log(err)
             alert('Network error, try again later')

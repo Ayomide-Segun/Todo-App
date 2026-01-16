@@ -27,7 +27,7 @@ export function RegisterScreen(props){
         }
         VerifyEmail(userDetails.email)
     }
-
+    
     useEffect(() => {
         localStorage.setItem("userDetails", JSON.stringify(userDetails))
     })
