@@ -44,10 +44,23 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": "otp-cache",
+        "LOCATION": "cached_otp",
     }
 }
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "ERROR",
+    },
+}
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False

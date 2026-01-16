@@ -96,10 +96,10 @@ class RegisterView(APIView):
 
         cached_otp = cache.get(f"otp_{email}")
 
-        if not cached_otp: 
+        if cached_otp is None: 
             return Response({"error": "Verification code expired or invalid"}, status=400)
 
-        if cached_otp != otp_input:
+        if str(cached_otp) != str(otp_input):
             return Response({"error": "Incorrect verification code"}, status=400)
 
         cache.delete(f"otp_{email}")  # one-time use 
@@ -114,18 +114,33 @@ class RegisterView(APIView):
 @permission_classes([AllowAny])
 def verifyEmail(request):
     email = request.data.get("email")
+    if not email :
+        return Response(
+            {"error": "Email is required"},
+            status=400
+        )
+        
     otp = generate_otp()
-    cache.set(f"otp_{email}", otp, timeout=300)
-    verification_link = f"http://task-management-app-virid.vercel.app/verifyEmail"
+    cached_otp = cache.set(f"otp_{email}", otp, timeout=300)
     
+    if not cached_otp:
+        return Response(
+            {"error": "OTP expired or invalid"},
+            status=400
+        )
+    
+    verification_link = f"http://task-management-app-virid.vercel.app/verifyEmail"
     send_mail(
         "Email verification",
-        f"Verification code: {otp}",
-        f"Click the link to reset your password: {verification_link}",
+        f"Verification code: {otp} \nClick the link to reset your password: {verification_link}",
         settings.EMAIL_HOST_USER,
         [email],
+        fail_silently=False
     )
-    return otp
+    return Response(
+        {"message": "OTP sent successfully"},
+        status=200
+    )
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
