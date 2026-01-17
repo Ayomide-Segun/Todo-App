@@ -124,13 +124,16 @@ def verifyEmail(request):
     cached_otp = cache.set(f"otp_{email}", otp, timeout=300)
     
     verification_link = f"http://task-management-app-virid.vercel.app/verifyEmail"
-    send_mail(
-        "Email verification",
-        f"Verification code: {otp} \nClick the link to reset your password: {verification_link}",
-        settings.EMAIL_HOST_USER,
-        [email],
-        fail_silently=False
-    )
+    try:
+        send_mail(
+            "Email verification",
+            f"Verification code: {otp} \nClick the link to reset your password: {verification_link}",
+            settings.EMAIL_HOST_USER,
+            [email],
+            fail_silently=False
+        )
+    except Exception as e:
+        return Response({"error": "Email failed to send"}, status=500)
     return Response(
         {"message": "OTP sent successfully"},
         status=200
