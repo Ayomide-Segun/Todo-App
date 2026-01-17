@@ -2,10 +2,11 @@ import { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../contexts/AuthContext.jsx'
 import { SmallerComponentsContext } from '../contexts/SmallerComponentsContext.jsx'
 import '../Login.css'
+import {Loader} from './Loader.jsx'
 
 export function LoginScreen(props){
     const {navigate} = props
-    const {Login, username, setUsername} = useContext(AuthContext)
+    const {Login, username, setUsername, loading, setLoading} = useContext(AuthContext)
     const {setAddTodoShowing, setHeaderShowing} = useContext(SmallerComponentsContext)
     const [loginDetails, setLoginDetails] = useState({
         "username": '',
@@ -14,6 +15,7 @@ export function LoginScreen(props){
 
     function handleSubmit(e){
         e.preventDefault()
+        setLoading(true)
         Login(loginDetails.username, loginDetails.password)
         setUsername(loginDetails.username)
     }
@@ -101,12 +103,13 @@ export function LoginScreen(props){
                         
                     >Forgot password</a>
                 </div>
-
+                
                 <input 
                     className='submit-button' 
                     type="submit" 
                     value="Sign in"
                 />
+                {loading && <Loader/>}
             </form>
         </main>
     )

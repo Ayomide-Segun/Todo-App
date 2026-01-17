@@ -1,19 +1,19 @@
-import clsx from 'clsx'
 import { useState, useContext, useEffect } from 'react'
 import { SmallerComponentsContext } from '../contexts/SmallerComponentsContext.jsx'
 import '../Login.css'
-import api from '../api/axios.js'
 import { AuthContext } from '../contexts/AuthContext.jsx'
+import { Loader } from './Loader.jsx'
 
 export function EmailVerification(props){
     const {setAddTodoShowing, setHeaderShowing} = useContext(SmallerComponentsContext)
-    const {userDetails, Register, VerifyEmail} = useContext(AuthContext)
+    const {userDetails, Register, VerifyEmail, loading, setLoading} = useContext(AuthContext)
     const {navigate} = props
 
     const [otp, setOtp] = useState(null) 
 
     async function handleSubmit(e, otp, userDetails){
         e.preventDefault()
+        setLoading(true)
         const [username, email, password] = userDetails
         Register(
             otp, username, email, password
@@ -83,6 +83,7 @@ export function EmailVerification(props){
                         </a> 
                         <input className='submit-button mt-10' type="submit" value="Send" />
                     </div>
+                    {loading && <Loader/>}
             
             </form>
         </main>

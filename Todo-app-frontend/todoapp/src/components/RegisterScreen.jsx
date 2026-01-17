@@ -2,35 +2,37 @@ import { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../contexts/AuthContext.jsx'
 import { SmallerComponentsContext } from '../contexts/SmallerComponentsContext.jsx'
 import '../Login.css'
-import { FaCheck } from 'react-icons/fa'
-import { FaTimes } from 'react-icons/fa'
+import { FaCheck, FaTimes } from 'react-icons/fa'
+import { Loader } from './Loader.jsx'
+
 
 
 export function RegisterScreen(props){
-    const {VerifyEmail, userDetails, setUserDetails} = useContext(AuthContext)
+    const {VerifyEmail, userDetails, setUserDetails, loading, setLoading} = useContext(AuthContext)
     const {setAddTodoShowing, setHeaderShowing} = useContext(SmallerComponentsContext)
     const {navigate} = props
 
-    console.log(userDetails)
     
-
+    
     const [passwordCorrect, setPasswordCorrect] = useState(null)
     const [repeatPasswordCorrect, setRepeatPasswordCorrect] = useState(null)
-
+    console.log(passwordCorrect)
+    console.log(repeatPasswordCorrect)
+    
     function handleSubmit(e){
         e.preventDefault(); // prevent page refresh
-        if(passwordCorrect !== true) return
+        if(passwordCorrect !== true) {
+            alert("Password incorrect")
+            return
+        }
         if(repeatPasswordCorrect === false){
             alert("Passwords don't match, try again!")
             setUserDetails(prev => ({...prev, password: "", repeatPassword:""}))
             return;
         }
+        setLoading(true)
         VerifyEmail(userDetails.email)
     }
-    
-    useEffect(() => {
-        localStorage.setItem("userDetails", JSON.stringify(userDetails))
-    })
 
     useEffect(()=>{
         function isValidPassword(password) {
@@ -66,8 +68,8 @@ export function RegisterScreen(props){
                 alignItems: "center",
             }}
         >
-            <form 
-                onSubmit={handleSubmit}
+            <form
+                method='POST'
                 className='register-form w-full h-full md:w-1/2 md:h-9/10'
                 >
                 <div className='header header mb-5 md:mb-0'>
@@ -178,12 +180,15 @@ export function RegisterScreen(props){
                     />}
                 </div>
                 
-
                 <input 
                     className='submit-button' 
-                    type="submit" 
+                    type="button" 
+                    onClick={(e)=> {
+                        handleSubmit(e)
+                    }}
                     value="Sign up"
                 />
+                {loading && <Loader/>}
             </form>
         </main>
     )
