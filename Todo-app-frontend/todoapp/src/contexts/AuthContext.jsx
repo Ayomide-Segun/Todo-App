@@ -52,38 +52,16 @@ export function AuthContextProvider({children}){
         }
     }
 
-    async function Register( otp, username, email, password ){
+    async function Register(  username, email, password ){
         try {
         const res = await api.post('register/',{ 
-            otp, username, email, password
+            username, email, password
         });
         setLoading(false)
         alert('Account created successfully!')
         navigate('/Login')
         } catch (err) {
-            const errors = err.response?.data;
-            if(!errors){
-                alert("Network error. Try again later")
-                return
-            }
-            if (typeof data === "object") {
-                const messages = [];
-
-                Object.values(data).forEach((value) => {
-                    if (Array.isArray(value)) {
-                        messages.push(value[0]);
-                        alert(messages.join("\n"));
-                        navigate('/register')
-                        return;
-                    } else if (typeof value === "string") {
-                        messages.push(value);
-                        alert(messages.join("\n"));
-                        return;
-                    }
-                });
-
-                
-            }
+            console.log(err)
             setLoading(false)
             alert("Registration failed");
         }

@@ -11,12 +11,12 @@ export function EmailVerification(props){
 
     const [otp, setOtp] = useState(null) 
 
-    async function handleSubmit(e, otp, userDetails){
+    async function handleSubmit(e, userDetails){
         e.preventDefault()
         setLoading(true)
         const [username, email, password] = userDetails
         Register(
-            otp, username, email, password
+            username, email, password
         );        
     }
         
@@ -36,55 +36,36 @@ export function EmailVerification(props){
         >
             
             <form 
-            className='login-form w-full h-8/10 p-0 md:w-1/2 md:h-1/2' 
-            onSubmit={(e) => handleSubmit(e, userDetails, otp)}>
-                
-                
-                <div className='header'>
-                    <img className='app-logo' src="/logo.png" alt="logo of todo app" />
-                    
-                    <h2 className='authenticate text-lg'>Email Verification</h2>
-                </div>
-                <div className='otp-div w-full md:w-1/2'>
-                    <p 
-                        className='new-email text-sm sm:text-xl'
-                        
-                    >
-                        OTP not received? 
-                        <a
-                            className="cursor-pointer"
-                            onClick={() => {
-                                navigate('/register')  
-                        }}
-                        >
-                            Sign up with new email
-                        </a> 
-                    </p>
-                    <input 
-                        className='authentication-input text-sm md:text-lg otp'
-                        type="text" 
-                        id='otp' 
-                        name='otp' 
-                        placeholder='OTP'
-                        value={otp}
-                        required
-                        onChange={(e)=>{
-                            const value = e.target.value
-                            setOtp(value)
-                        }}
+                className='login-form w-full h-[300px]  md:w-[700px] sm:w-[500px] md:w-[700px] md:h-[1/2]' 
+                onSubmit={(e) => handleSubmit(e, userDetails)}
+            >
+                <div 
+                    className='header'
+                >
+                    <img 
+                        className='app-logo' src="/logo.png" alt="logo of todo app"
                     />
-                        <a
-                            className='resend-otp text-sm sm:text-xl cursor-pointer'
-                            onClick={() => {
-                                VerifyEmail(userDetails.email)
-                            }}
-                        >
-                            Resend OTP
-                        </a> 
-                        <input className='submit-button mt-10' type="submit" value="Send" />
-                    </div>
-                    {loading && <Loader/>}
-            
+                    
+                    <h2 
+                        className='authenticate text-lg'
+                    >
+                        Email Verification
+                    </h2>
+                </div>
+                <div
+                    className='w-full'
+                >
+                    <p
+                        className='text-center font-bold text-lg md:text-2xl'
+                    >
+                        You account has been verified successfully
+                    </p>
+                    <input              
+                        className='submit-button mt-10 mx-24 sm:mx-48 md:mx-80 sm:w-[70px] md:w-[90px]' 
+                        type="submit" 
+                        value="Send" 
+                    />
+                </div>
             </form>
         </main>
     )

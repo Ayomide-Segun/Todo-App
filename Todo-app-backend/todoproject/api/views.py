@@ -92,18 +92,6 @@ def ai_assistant(request):
 class RegisterView(APIView):
     def post(self, request):
         email = request.POST.get("email")
-        otp_input = request.POST.get("otp")
-
-        cached_otp = cache.get(f"otp_{email}")
-
-        if cached_otp is None: 
-            return Response({"error": "Verification code expired or invalid"}, status=400)
-
-        if str(cached_otp) != str(otp_input):
-            return Response({"error": "Incorrect verification code"}, status=400)
-
-        cache.delete(f"otp_{email}")  # one-time use 
-
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -119,15 +107,12 @@ def verifyEmail(request):
             {"error": "Email is required"},
             status=400
         )
-        
-    otp = generate_otp()
-    cached_otp = cache.set(f"otp_{email}", otp, timeout=300)
     
     verification_link = f"http://task-management-app-virid.vercel.app/verifyEmail"
     try:
         send_mail(
             "Email verification",
-            f"Verification code: {otp} \nClick the link to reset your password: {verification_link}",
+            f"Click the link to reset your password: {verification_link}",
             settings.EMAIL_HOST_USER,
             [email],
             fail_silently=False
@@ -135,7 +120,7 @@ def verifyEmail(request):
     except Exception as e:
         return Response({"error": "Email failed to send"}, status=500)
     return Response(
-        {"message": "OTP sent successfully"},
+        {"message": "Verification link sent successfully"},
         status=200
     )
 

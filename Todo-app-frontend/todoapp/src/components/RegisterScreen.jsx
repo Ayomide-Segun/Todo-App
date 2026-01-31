@@ -83,7 +83,8 @@ export function RegisterScreen(props){
                 className="text-lg mb-3 md:text-xl"
                 >Already have an account? <a     
                     style={{
-                        cursor: "pointer"
+                        cursor: "pointer",
+                        marginLeft: "5px"
                     }}
                     onClick={()=>{
                         navigate("/login")   

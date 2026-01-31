@@ -54,7 +54,8 @@ export function LoginScreen(props){
                 className="text-lg md:text-xl"
                 >New here? <a     
                     style={{
-                        cursor: "pointer"
+                        cursor: "pointer",
+                        marginLeft:"5px"
                     }}
                     onClick={()=>{
                         navigate("/register")   
