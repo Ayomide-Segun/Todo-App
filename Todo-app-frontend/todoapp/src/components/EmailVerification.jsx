@@ -2,14 +2,12 @@ import { useState, useContext, useEffect } from 'react'
 import { SmallerComponentsContext } from '../contexts/SmallerComponentsContext.jsx'
 import '../Login.css'
 import { AuthContext } from '../contexts/AuthContext.jsx'
-import { Loader } from './Loader.jsx'
 
 export function EmailVerification(props){
     const {setAddTodoShowing, setHeaderShowing} = useContext(SmallerComponentsContext)
-    const {userDetails, Register, VerifyEmail, loading, setLoading} = useContext(AuthContext)
+    const {userDetails, Register, setLoading} = useContext(AuthContext)
     const {navigate} = props
 
-    const [otp, setOtp] = useState(null) 
 
     async function handleSubmit(e, userDetails){
         e.preventDefault()
