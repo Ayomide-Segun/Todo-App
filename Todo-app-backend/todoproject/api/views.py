@@ -118,7 +118,8 @@ def verifyEmail(request):
             fail_silently=False
         )
     except Exception as e:
-        return Response({"error": "Email failed to send"}, status=500)
+        print("EMAIL ERROR:", str(e)) 
+        return Response({"error": str(e)}, status=500)
     return Response(
         {"message": "Verification link sent successfully"},
         status=200
