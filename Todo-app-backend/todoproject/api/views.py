@@ -4,7 +4,6 @@ from rest_framework import generics, viewsets, status
 from todoapp.models import Todos, CheckIns, ChatMessage
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.core.mail import send_mail
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from .serializers import TodosSerializer, CheckInsSerializer, ChatMessageSerializer, RegisterSerializer
@@ -14,9 +13,10 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from django.conf import settings
 from rest_framework.permissions import IsAuthenticated
-from .utils import get_gemini_response, generate_otp
-from django.core.cache import cache
+from .utils import get_gemini_response
+import resend
 
+resend.api_key = settings.RESEND_API_KEY
 class TodoListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = TodosSerializer
     permission_classes = [IsAuthenticated]
@@ -110,13 +110,16 @@ def verifyEmail(request):
     
     verification_link = f"http://task-management-app-virid.vercel.app/verifyEmail"
     try:
-        send_mail(
-            "Email verification",
-            f"Click the link to reset your password: {verification_link}",
-            settings.EMAIL_HOST_USER,
-            [email],
-            fail_silently=False
-        )
+        resend.Emails.send({
+            "from": "Todo App <onboarding@resend.dev>",
+            "to": [email],
+            "subject": "Email verification",
+            "html": f"""
+                <img src=""/>
+                <p>Click the link to reset your password:</p>
+                <a href={verification_link}>Verify email</a>
+            """
+        })
     except Exception as e:
         print("EMAIL ERROR:", str(e)) 
         return Response({"error": str(e)}, status=500)
