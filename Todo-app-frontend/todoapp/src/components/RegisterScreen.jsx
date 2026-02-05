@@ -29,7 +29,7 @@ export function RegisterScreen(props){
             return;
         }
         setLoading(true)
-        VerifyEmail(userDetails.email)
+        VerifyEmail(userDetails.email, userDetails.username)
     }
 
     useEffect(()=>{

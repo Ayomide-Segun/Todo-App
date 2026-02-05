@@ -41,10 +41,10 @@ export function AuthContextProvider({children}){
         
     }
     
-    async function VerifyEmail(email){
+    async function VerifyEmail(email, username){
         try {
             const res = await api.post('verifyEmail/',
-                {email}
+                {email, username}
             );
             setLoading(false)
             alert('A verificaton code has been sent to your email')
@@ -52,7 +52,7 @@ export function AuthContextProvider({children}){
         } catch (err) {
             console.log(err)
             setLoading(false)
-            alert('Network error, try again later')
+            alert(err.response)
         }
     }
 
@@ -68,7 +68,10 @@ export function AuthContextProvider({children}){
         } catch (err) {
             console.log(err)
             setLoading(false)
-            alert("Registration failed");
+            if(err.response.data.email[0] === "Email already exists"){
+                alert("Email already exists")
+            }else{
+            alert("Registration failed")};
         }
     }
     return(

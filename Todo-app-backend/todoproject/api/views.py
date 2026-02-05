@@ -102,9 +102,22 @@ class RegisterView(APIView):
 @permission_classes([AllowAny])
 def verifyEmail(request):
     email = request.data.get("email")
+    username = request.data.get("username")
     if not email :
         return Response(
             {"error": "Email is required"},
+            status=400
+        )
+        
+    if User.objects.filter(username=username).exists():
+        return Response(
+            {"error": "Username already exists"},
+            status=400
+        )
+        
+    if User.objects.filter(email=email).exists():
+        return Response(
+            {"error": "Email already exists"},
             status=400
         )
     
@@ -122,7 +135,7 @@ def verifyEmail(request):
         })
     except Exception as e:
         print("EMAIL ERROR:", str(e)) 
-        return Response({"error": str(e)}, status=500)
+        return Response({"error": "Network error, try again later"}, status=500)
     return Response(
         {"message": "Verification link sent successfully"},
         status=200
