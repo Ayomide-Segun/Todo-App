@@ -12,7 +12,7 @@ export function EmailVerification(props){
     async function handleSubmit(e, userDetails){
         e.preventDefault()
         setLoading(true)
-        const [username, email, password] = userDetails
+        const {username, email, password} = userDetails
         Register(
             username, email, password
         );        
@@ -61,7 +61,7 @@ export function EmailVerification(props){
                     <input              
                         className='submit-button mt-10 mx-24 sm:mx-48 md:mx-80 sm:w-[70px] md:w-[90px]' 
                         type="submit" 
-                        value="Send" 
+                        value="Proceed" 
                     />
                 </div>
             </form>

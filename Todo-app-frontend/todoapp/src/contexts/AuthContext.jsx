@@ -43,7 +43,6 @@ export function AuthContextProvider({children}){
             );
             setLoading(false)
             alert('A verificaton code has been sent to your email')
-            navigate('/verifyEmail')
             
         } catch (err) {
             console.log(err)
