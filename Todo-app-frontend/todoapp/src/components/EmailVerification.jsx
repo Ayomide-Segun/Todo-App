@@ -23,6 +23,10 @@ export function EmailVerification(props){
         setHeaderShowing(false)
     },[])
 
+    useEffect(()=>{
+        localStorage.setItem("userDetails", JSON.stringify(userDetails))
+    },[userDetails])
+
     return(
         <main
             style={{

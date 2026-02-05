@@ -10,11 +10,16 @@ export function AuthContextProvider({children}){
         return saved ? JSON.parse(saved) : ''
     })
     const navigate = useNavigate()
-    const [userDetails, setUserDetails] = useState( {
-        username:"",
-        password:"",
-        email:"",
-        repeatPassword:""
+    const [userDetails, setUserDetails] = useState( ()=>{
+        const saved = localStorage.getItem("userDetails")
+        return saved ? 
+        JSON.parse(saved) :
+        {
+            username:"",
+            password:"",
+            email:"",
+            repeatPassword:""
+        }
     })
     const [loading, setLoading] = useState(false)
 
