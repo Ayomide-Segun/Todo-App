@@ -52,7 +52,12 @@ export function AuthContextProvider({children}){
         } catch (err) {
             console.log(err)
             setLoading(false)
-            alert(err.response)
+            alert(
+                err?.response?.data?.error ||
+                err?.response?.data?.message ||
+                err?.message ||
+                "Something went wrong"
+            )
         }
     }
 
