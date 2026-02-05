@@ -11,6 +11,7 @@ export function RegisterScreen(props){
     const {VerifyEmail, userDetails, setUserDetails, loading, setLoading} = useContext(AuthContext)
     const {setAddTodoShowing, setHeaderShowing} = useContext(SmallerComponentsContext)
     const {navigate} = props
+    console.log(userDetails)
 
     
     
@@ -59,6 +60,9 @@ export function RegisterScreen(props){
             setPasswordCorrect(null)
             setRepeatPasswordCorrect(null)
         },[])
+    useEffect(()=>{
+        localStorage.setItem("userDetails", JSON.stringify(userDetails))
+    },[userDetails])
 
     return(
         <main
