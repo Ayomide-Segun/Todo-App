@@ -124,7 +124,7 @@ def verifyEmail(request):
     verification_link = f"http://task-management-app-virid.vercel.app/verifyEmail"
     try:
         resend.Emails.send({
-            "from": "Todo App <treasure.segun@gmail.com>",
+            "from": "Todo App <onboarding@resend.dev>",
             "to": [email],
             "subject": "Email verification",
             "html": f"""
