@@ -46,7 +46,6 @@ export function HomeScreen(props) {
     useEffect(()=>{
         setHeaderShowing(true)
         setAddTodoShowing(true)
-        localStorage.removeItem("userDetails")
     }, [])
     
     return(

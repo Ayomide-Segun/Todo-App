@@ -64,6 +64,7 @@ export function AuthContextProvider({children}){
         setLoading(false)
         alert('Account created successfully!')
         navigate('/Login')
+        localStorage.removeItem("userDetails")
         } catch (err) {
             console.log(err)
             setLoading(false)
