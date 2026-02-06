@@ -5,6 +5,7 @@ import api from '../api/axios.js'
 
 export function ForgotPassword(){
     const {setAddTodoShowing, setHeaderShowing} = useContext(SmallerComponentsContext)
+    const {setLoading} = useContext(AuthContext)
 
     const [email, setEmail] = useState('')
     const [emailSent , setEmailSent] = useState(false)
@@ -13,13 +14,26 @@ export function ForgotPassword(){
     async function handleSubmit(e, email){
         e.preventDefault()
         try{
+            setLoading(true)
             const res = await api.post("forgotPassword/", {
             email
         });
+         // 🧪 DEMO MODE
+        if (res.data.demo) {
+            const { uid, token } = res.data;
+            navigate(`/passwordReset/${uid}/${token}`);
+            setEmailSent(true)
+            return;
+        }
         setEmailSent(true)
         alert('If the account exists, a reset link has been sent') 
         }catch (err){
             console.log(err)
+            alert(
+            err?.response?.data?.error ||
+            "Something went wrong. Please try again.")
+        }finally {
+            setLoading(false);
         }
         
     }

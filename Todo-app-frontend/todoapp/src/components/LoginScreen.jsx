@@ -97,7 +97,7 @@ export function LoginScreen(props){
                 >
                     <a 
                         className='forgot-password' 
-                        href="SignUpScreen.jsx"
+                        href="ForgotPassword.jsx"
                         onClick={(e)=> {
                             e.preventDefault()
                             navigate('/forgotPassword')}}

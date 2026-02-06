@@ -121,6 +121,18 @@ def verifyEmail(request):
             status=400
         )
     
+    # Demo mode bypass
+    # ✅ DEMO MODE BYPASS
+    if settings.DEMO_MODE:
+        return Response(
+            {
+                "message": "Demo mode: email verification skipped",
+                "verified": True
+            },
+            status=200
+        )
+    
+    # Real email flow
     verification_link = f"http://task-management-app-virid.vercel.app/verifyEmail"
     try:
         resend.Emails.send({
@@ -128,8 +140,7 @@ def verifyEmail(request):
             "to": [email],
             "subject": "Email verification",
             "html": f"""
-                <img src=""/>
-                <p>Click the link to reset your password:</p>
+                <p>Click the link to verify your email:</p>
                 <a href={verification_link}>Verify email</a>
             """
         })
@@ -144,7 +155,7 @@ def verifyEmail(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def forgot_password(request):
-    email = request.data.get("email")  # username OR email
+    email = request.data.get("email") 
     try:
         user = User.objects.filter(email=email).first()
     except User.DoesNotExist:
@@ -153,16 +164,28 @@ def forgot_password(request):
             "error": "User not found"
         })
         
+    # DEMO MODE
+    if settings.DEMO_MODE:
+        return Response({
+            "demo": True,
+            "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+            "token": default_token_generator.make_token(user)
+        }, status=200)
+
+    # real mode 
     uid = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)
     reset_link = f"http://task-management-app-virid.vercel.app/passwordReset/{uid}/{token}"
-    
-    send_mail(
-        "Password Reset",
-        f"Click the link to reset your password: {reset_link}",
-        settings.EMAIL_HOST_USER,
-        [user.email],
-    )
+
+    resend.Emails.send({
+            "from": "Todo App <onboarding@resend.dev>",
+            "to": [user.email],
+            "subject": "Password Reset",
+            "html": f"""
+                <p>Click the link to reset your password:</p>
+                <a href={reset_link}>Reset password</a>
+            """
+        })
     
     return Response({
         "message": "If the account exists, a reset link has been- sent."

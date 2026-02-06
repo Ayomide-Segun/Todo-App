@@ -56,7 +56,7 @@ export function EmailVerification(props){
                     <p
                         className='text-center font-bold text-lg md:text-2xl'
                     >
-                        You account has been verified successfully
+                        You email has been verified successfully
                     </p>
                     <input              
                         className='submit-button mt-10 mx-24 sm:mx-48 md:mx-80 sm:w-[70px] md:w-[90px]' 

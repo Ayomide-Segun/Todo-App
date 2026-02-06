@@ -46,9 +46,17 @@ export function AuthContextProvider({children}){
             const res = await api.post('verifyEmail/',
                 {email, username}
             );
-            setLoading(false)
-            alert('A verificaton code has been sent to your email')
             
+
+            // ✅ DEMO MODE
+        if (res.data.verified) {
+            const { username, email, password } = userDetails;
+            console.log("Demo mode: email verification skipped");
+            await Register(username, email, password);
+            return;
+        }
+
+        alert('A verificaton code has been sent to your email')
         } catch (err) {
             console.log(err)
             setLoading(false)
@@ -58,6 +66,8 @@ export function AuthContextProvider({children}){
                 err?.message ||
                 "Something went wrong"
             )
+        }finally {
+            setLoading(false);
         }
     }
 
@@ -66,17 +76,15 @@ export function AuthContextProvider({children}){
         const res = await api.post('register/',{ 
             username, email, password
         });
-        setLoading(false)
         alert('Account created successfully!')
         navigate('/Login')
         localStorage.removeItem("userDetails")
         } catch (err) {
             console.log(err)
             setLoading(false)
-            if(err.response.data.email[0] === "Email already exists"){
-                alert("Email already exists")
-            }else{
-            alert("Registration failed")};
+            alert("Registration failed");
+        }finally {
+            setLoading(false);
         }
     }
     return(
