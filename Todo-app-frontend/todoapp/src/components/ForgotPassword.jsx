@@ -4,7 +4,8 @@ import { AuthContext } from '../contexts/AuthContext.jsx'
 import '../Login.css'
 import api from '../api/axios.js'
 
-export function ForgotPassword(){
+export function ForgotPassword(props){
+    const {navigate} = props
     const {setAddTodoShowing, setHeaderShowing} = useContext(SmallerComponentsContext)
     const {setLoading} = useContext(AuthContext)
 
