@@ -18,7 +18,7 @@ export function SmallerComponentsContextProvider({children}){
     const [exceededTasks, setExceededTasks] = useState(()=>{
         const saved = localStorage.getItem("exceeded")
         return saved ? Number(
-        JSON.parse()) : 0
+        JSON.parse(saved)) : 0
     }) 
     const [exceededTasksClicked, setExceededTasksClicked] = useState(false)
 

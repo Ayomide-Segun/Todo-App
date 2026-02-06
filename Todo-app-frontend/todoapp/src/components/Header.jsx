@@ -58,7 +58,7 @@ export function Header(props){
 
         if (exceededTasks > 0) {
             if(exceededTasksClicked){
-                setExceededTasks('')
+                setExceededTasks(0)
             } else{
                 addNotification(
                     1,
