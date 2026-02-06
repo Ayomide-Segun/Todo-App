@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import { SmallerComponentsContext } from '../contexts/SmallerContext.jsx'
-import { AuthComponentsContext } from '../contexts/AuthContext.jsx'
+import { AuthContext } from '../contexts/AuthContext.jsx'
 import '../Login.css'
 import api from '../api/axios.js'
 

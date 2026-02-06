@@ -14,7 +14,7 @@ export function Header(props){
 
     const {todos, today, setClickedTab} = useContext(AppContext)
 
-    const {openSidebar, setOpenSidebar, hidden, openNotificationPopUp, setOpenNotificationPopUp, justStarted, setJustStarted, setEndingToday, endingToday,  endingTodayClicked, setEndingTodayClicked, justStartedClicked, exceededTasks, exceededTasksClicked, highIntensity, setHighIntensity, lowIntensity, setLowIntensity} = useContext(SmallerComponentsContext)
+    const {openSidebar, setOpenSidebar, hidden, openNotificationPopUp, setOpenNotificationPopUp, justStarted, setJustStarted, setEndingToday, endingToday,  endingTodayClicked, setEndingTodayClicked, justStartedClicked, exceededTasks,  setExceededTasks, exceededTasksClicked, highIntensity, setHighIntensity, lowIntensity, setLowIntensity} = useContext(SmallerComponentsContext)
 
     const [notification, setNotification] = useState([])
     const hasNotification = notification.length > 0
@@ -58,7 +58,7 @@ export function Header(props){
 
         if (exceededTasks > 0) {
             if(exceededTasksClicked){
-                exceededTasks = ''
+                setExceededTasks('')
             } else{
                 addNotification(
                     1,
@@ -174,7 +174,6 @@ export function Header(props){
                     notification={notification}
                     setNotification={setNotification}
                     navigate={navigate}
-                    exceededTasks={exceededTasks}
                     setOpenNotificationPopUp={setOpenNotificationPopUp}
                     setClickedTab={setClickedTab}
                     setEndingTodayClicked={setEndingTodayClicked}

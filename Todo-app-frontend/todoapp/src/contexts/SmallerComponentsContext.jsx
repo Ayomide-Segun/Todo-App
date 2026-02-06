@@ -15,9 +15,11 @@ export function SmallerComponentsContextProvider({children}){
     const [addTodoShowing, setAddTodoShowing] = useState(true)
 
     let exceededTasksValue = todos.filter((t)=> t.status === 'Exceeded').length
-    let exceededTasks = Number(
-        JSON.parse(localStorage.getItem("exceeded")) 
-    ) || 0
+    const [exceededTasks, setExceededTasks] = useState(()=>{
+        const saved = localStorage.getItem("exceeded")
+        return saved ? Number(
+        JSON.parse()) : 0
+    }) 
     const [exceededTasksClicked, setExceededTasksClicked] = useState(false)
 
     const [justStarted, setJustStarted] = useState(() => {
@@ -69,6 +71,7 @@ export function SmallerComponentsContextProvider({children}){
                 setLastScrollY,
                 exceededTasksValue,
                 exceededTasks,
+                setExceededTasks,
                 exceededTasksClicked, 
                 setExceededTasksClicked,
                 justStarted,

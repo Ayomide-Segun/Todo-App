@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 
 export function NotificationsPopUp(props){
-    const { notification, setNotification, navigate, exceededTasks, setJustStartedClicked,         setEndingTodayClicked, setOpenNotificationPopUp, setClickedTab, setExceededTasksClicked} = props
+    const { notification, setNotification, navigate, setJustStartedClicked,         setEndingTodayClicked, setOpenNotificationPopUp, setClickedTab, setExceededTasksClicked} = props
     return(
         <div
             className="notification-container w-1/2 md:w-1/4"
